@@ -1,5 +1,3 @@
-<center>
-
 # booruuu - a browser-based imageboard viewer
 
 ## Warning: This project is a personal project, and is not aimed for general use, although this may change in the future.
@@ -8,21 +6,29 @@ This is an imageboard (booru) viewer that runs on the browser. Eliminates annoya
 
 This is personal project mainly aimed for learning React, but it is possible that it becomes a general-purpose tool if there's enough interest.
 
+This is still in alpha stage, so bugs are pretty common, always except things to not work.
+
 ![Screenshot](doc/screenshot.png)
 
-# Currently supported websites
+I have beginner-level knowledge in developement, thus the code might not be on par with what you might be used to. English is not my mother tongue, so you might also encounter some mistakes in typing.
 
-</center>
+# How to run
+
+Make sure you ran `npm install` on both the main component and the `client` component.
+
+For general development (runs both server and client): `npm run dev`
+
+Run server only: `npm run dev`
+
+To compile client (to be served by a web server): `cd client; npm run build`
+
+# Currently supported websites
 
 -   e926
 -   e621 🔞
 -   Danbooru 🔞
 -   Sankaku Channel 🔞
 
-<center>
-
 # License
 
 This software is licensed under GNU Affero General Public License v3.0. A copy is available [here](LICENSE).
-
-</center>
