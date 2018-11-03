@@ -6,7 +6,7 @@ This is an imageboard (booru) viewer that runs on the browser. Eliminates annoya
 
 This is personal project mainly aimed for learning React, but it is possible that it becomes a general-purpose tool if there's enough interest.
 
-This is still in alpha stage, so bugs are pretty common, always except things to not work.
+This is still in alpha stage, so bugs are pretty common; always except things to not work.
 
 ![Screenshot](doc/screenshot.png)
 
