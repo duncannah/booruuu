@@ -1,0 +1,29 @@
+.tags {
+	.type {
+		//opacity: .6;
+
+		.name {
+			font-size: 27px;
+			font-weight: 300;
+			font-style: italic;
+
+			text-transform: lowercase;
+		}
+	}
+
+	.tag {
+		.actions, .actions div {
+			display: inline-block;
+
+			margin-right: 4px;
+		}
+
+		.count {
+			font-size: 50%;
+
+			display: inline-block;
+
+			margin-left: 5px;
+		}
+	}
+}

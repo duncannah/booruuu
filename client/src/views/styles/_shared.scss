@@ -1,0 +1,5 @@
+$color-main: #8a14ff;
+$color-background: darken($color-main, 51%); //#07020d;
+$color-sidebar: lighten($color-background, 2%); //#0c0117;
+$color-text: rgba(lighten($color-background, 70%), .6); //#ba85ff
+$color-btn: lighten($color-background, 10%); //#29064d

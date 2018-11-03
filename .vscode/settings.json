@@ -1,0 +1,6 @@
+{
+	"csscomb.ignoreFilesOnSave": [
+		"**/src/views/styles/_colors.scss"
+	],
+	"git.ignoreLimitWarning": true
+}

@@ -1,0 +1,66 @@
+@import '../../styles/shared';
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+
+	min-width: 300px;
+	max-width: 300px;
+	height: 100vh;
+	padding: 10px;
+
+	background-image: linear-gradient(var(--color-background) 0%, var(--color-sidebar) 100%);
+
+	flex-grow: 1;
+
+	.top {
+		& :first-child {
+			font-size: 18px;
+		}
+
+		& :last-child {
+			font-size: 12px;
+
+			float: right;
+
+			margin: 6px 0 0 0;
+		}
+	}
+
+	.inner {
+		overflow: auto;
+		overflow-x: hidden;
+
+		margin: 10px 0;
+
+		flex-grow: 1;
+	}
+
+	.bottom {
+		.settings {
+			float: left;
+
+			cursor: pointer;
+
+			fill: currentColor;
+		}
+
+		.link {
+			font-size: 12px;
+			font-style: italic;
+
+			float: right;
+
+			margin: 10px 0 0 0;
+
+			text-decoration: none;
+
+			color: inherit;
+		}
+	}
+
+	&.postView {
+		color: rgba(255, 255, 255, .6);
+		background-image: none;
+	}
+}

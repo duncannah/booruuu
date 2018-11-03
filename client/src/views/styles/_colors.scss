@@ -1,0 +1,126 @@
+$colors: #8a14ff #ff14e0 #ff1414 #ffad14 #fffb14 #20ff14 #14ffa9 #1467ff #2814ff #8a8a8a;
+
+@each $current-color in $colors {
+	$i: index($colors, $current-color);
+	.app.color-#{$i} {
+		$color-main: $current-color;
+		$color-background: darken($color-main, 51%);
+		$color-sidebar: lighten($color-background, 2%);
+		$color-text: rgba(lighten($color-background, 70%), 0.6);
+		$color-btn: lighten($color-background, 10%);
+
+		--color-main: #{$color-main};
+		--color-background: #{$color-background};
+		--color-sidebar: #{$color-sidebar};
+		--color-text: #{$color-text};
+		--color-btn: #{$color-btn};
+
+		$color-main-rgba-1: rgba($color-main, 1 / 10);
+		$color-background-rgba-1: rgba($color-background, 1 / 10);
+		$color-sidebar-rgba-1: rgba($color-sidebar, 1 / 10);
+		$color-text-rgba-1: rgba($color-text, 1 / 10);
+		$color-btn-rgba-1: rgba($color-btn, 1 / 10);
+
+		--color-main-rgba-1: #{$color-main-rgba-1};
+		--color-background-rgba-1: #{$color-background-rgba-1};
+		--color-sidebar-rgba-1: #{$color-sidebar-rgba-1};
+		--color-text-rgba-1: #{$color-text-rgba-1};
+		--color-btn-rgba-1: #{$color-btn-rgba-1};
+
+		$color-main-rgba-2: rgba($color-main, 2 / 10);
+		$color-background-rgba-2: rgba($color-background, 2 / 10);
+		$color-sidebar-rgba-2: rgba($color-sidebar, 2 / 10);
+		$color-text-rgba-2: rgba($color-text, 2 / 10);
+		$color-btn-rgba-2: rgba($color-btn, 2 / 10);
+
+		--color-main-rgba-2: #{$color-main-rgba-2};
+		--color-background-rgba-2: #{$color-background-rgba-2};
+		--color-sidebar-rgba-2: #{$color-sidebar-rgba-2};
+		--color-text-rgba-2: #{$color-text-rgba-2};
+		--color-btn-rgba-2: #{$color-btn-rgba-2};
+
+		$color-main-rgba-3: rgba($color-main, 3 / 10);
+		$color-background-rgba-3: rgba($color-background, 3 / 10);
+		$color-sidebar-rgba-3: rgba($color-sidebar, 3 / 10);
+		$color-text-rgba-3: rgba($color-text, 3 / 10);
+		$color-btn-rgba-3: rgba($color-btn, 3 / 10);
+
+		--color-main-rgba-3: #{$color-main-rgba-3};
+		--color-background-rgba-3: #{$color-background-rgba-3};
+		--color-sidebar-rgba-3: #{$color-sidebar-rgba-3};
+		--color-text-rgba-3: #{$color-text-rgba-3};
+		--color-btn-rgba-3: #{$color-btn-rgba-3};
+
+		$color-main-rgba-4: rgba($color-main, 4 / 10);
+		$color-background-rgba-4: rgba($color-background, 4 / 10);
+		$color-sidebar-rgba-4: rgba($color-sidebar, 4 / 10);
+		$color-text-rgba-4: rgba($color-text, 4 / 10);
+		$color-btn-rgba-4: rgba($color-btn, 4 / 10);
+
+		--color-main-rgba-4: #{$color-main-rgba-4};
+		--color-background-rgba-4: #{$color-background-rgba-4};
+		--color-sidebar-rgba-4: #{$color-sidebar-rgba-4};
+		--color-text-rgba-4: #{$color-text-rgba-4};
+		--color-btn-rgba-4: #{$color-btn-rgba-4};
+
+		$color-main-rgba-5: rgba($color-main, 5 / 10);
+		$color-background-rgba-5: rgba($color-background, 5 / 10);
+		$color-sidebar-rgba-5: rgba($color-sidebar, 5 / 10);
+		$color-text-rgba-5: rgba($color-text, 5 / 10);
+		$color-btn-rgba-5: rgba($color-btn, 5 / 10);
+
+		--color-main-rgba-5: #{$color-main-rgba-5};
+		--color-background-rgba-5: #{$color-background-rgba-5};
+		--color-sidebar-rgba-5: #{$color-sidebar-rgba-5};
+		--color-text-rgba-5: #{$color-text-rgba-5};
+		--color-btn-rgba-5: #{$color-btn-rgba-5};
+
+		$color-main-rgba-6: rgba($color-main, 6 / 10);
+		$color-background-rgba-6: rgba($color-background, 6 / 10);
+		$color-sidebar-rgba-6: rgba($color-sidebar, 6 / 10);
+		$color-text-rgba-6: rgba($color-text, 6 / 10);
+		$color-btn-rgba-6: rgba($color-btn, 6 / 10);
+
+		--color-main-rgba-6: #{$color-main-rgba-6};
+		--color-background-rgba-6: #{$color-background-rgba-6};
+		--color-sidebar-rgba-6: #{$color-sidebar-rgba-6};
+		--color-text-rgba-6: #{$color-text-rgba-6};
+		--color-btn-rgba-6: #{$color-btn-rgba-6};
+
+		$color-main-rgba-7: rgba($color-main, 7 / 10);
+		$color-background-rgba-7: rgba($color-background, 7 / 10);
+		$color-sidebar-rgba-7: rgba($color-sidebar, 7 / 10);
+		$color-text-rgba-7: rgba($color-text, 7 / 10);
+		$color-btn-rgba-7: rgba($color-btn, 7 / 10);
+
+		--color-main-rgba-7: #{$color-main-rgba-7};
+		--color-background-rgba-7: #{$color-background-rgba-7};
+		--color-sidebar-rgba-7: #{$color-sidebar-rgba-7};
+		--color-text-rgba-7: #{$color-text-rgba-7};
+		--color-btn-rgba-7: #{$color-btn-rgba-7};
+
+		$color-main-rgba-8: rgba($color-main, 8 / 10);
+		$color-background-rgba-8: rgba($color-background, 8 / 10);
+		$color-sidebar-rgba-8: rgba($color-sidebar, 8 / 10);
+		$color-text-rgba-8: rgba($color-text, 8 / 10);
+		$color-btn-rgba-8: rgba($color-btn, 8 / 10);
+
+		--color-main-rgba-8: #{$color-main-rgba-8};
+		--color-background-rgba-8: #{$color-background-rgba-8};
+		--color-sidebar-rgba-8: #{$color-sidebar-rgba-8};
+		--color-text-rgba-8: #{$color-text-rgba-8};
+		--color-btn-rgba-8: #{$color-btn-rgba-8};
+
+		$color-main-rgba-9: rgba($color-main, 9 / 10);
+		$color-background-rgba-9: rgba($color-background, 9 / 10);
+		$color-sidebar-rgba-9: rgba($color-sidebar, 9 / 10);
+		$color-text-rgba-9: rgba($color-text, 9 / 10);
+		$color-btn-rgba-9: rgba($color-btn, 9 / 10);
+
+		--color-main-rgba-9: #{$color-main-rgba-9};
+		--color-background-rgba-9: #{$color-background-rgba-9};
+		--color-sidebar-rgba-9: #{$color-sidebar-rgba-9};
+		--color-text-rgba-9: #{$color-text-rgba-9};
+		--color-btn-rgba-9: #{$color-btn-rgba-9};
+	}
+}
