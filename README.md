@@ -10,7 +10,7 @@ This is still in alpha stage, so bugs are pretty common; always except things to
 
 ![Screenshot](doc/screenshot.png)
 
-I have beginner-level knowledge in developement, thus the code might not be on par with what you might be used to. English is not my mother tongue, so you might also encounter some mistakes in typing.
+I have beginner-level knowledge in development, thus the code might not be on par with what you might be used to. English is not my mother tongue, so you might also encounter some mistakes in typing.
 
 # How to run
 
