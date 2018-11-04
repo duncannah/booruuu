@@ -12,23 +12,43 @@ This is still in alpha stage, so bugs are pretty common; always except things to
 
 I have beginner-level knowledge in development, thus the code might not be on par with what you might be used to. English is not my mother tongue, so you might also encounter some mistakes in typing.
 
-# How to run
-
-Make sure you ran `npm install` on both the main component and the `client` component to get the dependencies.
-You also need nodemon: `sudo npm install -g nodemon`
-
-For general development (runs both server and client): `npm run dev`
-
-Run server only: `PORT=5000 npm run server`
-
-To compile client (to be served by a web server): `cd client; npm run build`
-
 # Currently supported websites
 
 -   e926
 -   e621 🔞
 -   Danbooru 🔞
 -   Sankaku Channel 🔞
+
+# How to run
+
+Make sure you ran `npm install` on both the main component and the `client` component to get the dependencies.
+You also need nodemon: `sudo npm install -g nodemon`
+
+For general development (runs both API server and client server): `npm run dev`
+
+Run API server only: `PORT=5000 npm run server`
+
+To compile client (to be served by a web server): `cd client; npm run build`
+
+# Using it with NGINX
+
+In a production environment, it is a good idea to serve the client files through an actual web server like Nginx. But sometimes, there are cases where you can't expose an additional port (firewalls, reverse proxies, etc), so what you can do instead is a reverse proxy from Nginx to the API server.
+
+The client makes requests to `./api/` by default, so you can set up the reverse proxy there.
+
+Here's an example Nginx configuration. Let's say the client is served at `/booru`, and the API server is at `localhost:5000`:
+
+```
+location /booru/api/ {
+	proxy_pass http://localhost:5000/;
+	proxy_set_header Connection "";
+	proxy_http_version 1.1;
+	proxy_set_header Host $host;
+	proxy_set_header X-Real-IP $remote_addr;
+}
+```
+
+This will proxy all requests made to `/booru/api/` to the API server.
 
 # License
 
