@@ -19,7 +19,7 @@ You also need nodemon: `sudo npm install -g nodemon`
 
 For general development (runs both server and client): `npm run dev`
 
-Run server only: `npm run dev`
+Run server only: `npm run server`
 
 To compile client (to be served by a web server): `cd client; npm run build`
 
