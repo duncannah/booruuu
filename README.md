@@ -15,6 +15,7 @@ I have beginner-level knowledge in development, thus the code might not be on pa
 # How to run
 
 Make sure you ran `npm install` on both the main component and the `client` component to get the dependencies.
+You also need nodemon: `sudo npm install -g nodemon`
 
 For general development (runs both server and client): `npm run dev`
 
