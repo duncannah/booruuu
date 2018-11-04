@@ -1,8 +1,8 @@
-# booruuu - a browser-based imageboard viewer
+# booruuu - a browser-based imageboard browser
 
 ## Warning: This project is a personal project, and is not aimed for general use, although this may change in the future.
 
-This is an imageboard (booru) viewer that runs on the browser. Eliminates annoyances that are frequent when using imageboards, such as advertisements, ugly interfaces, intentional throttling, etc...
+This is an imageboard (booru) browser that runs on the browser. Eliminates annoyances that are frequent when using imageboards, such as advertisements, ugly interfaces, intentional throttling, etc...
 
 This is personal project mainly aimed for learning React, but it is possible that it becomes a general-purpose tool if there's enough interest.
 
@@ -14,7 +14,7 @@ I have beginner-level knowledge in development, thus the code might not be on pa
 
 # How to run
 
-Make sure you ran `npm install` on both the main component and the `client` component.
+Make sure you ran `npm install` on both the main component and the `client` component to get the dependencies.
 
 For general development (runs both server and client): `npm run dev`
 
