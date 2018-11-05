@@ -1,9 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import classNames from "classnames";
-
-import { siteActions } from "../../../core/site";
 
 import styles from "./tags.module.scss";
 
@@ -17,7 +14,7 @@ class PopularTags extends React.Component {
 							className={styles.tag}
 							style={{
 								color: Object.values(this.props.sites[this.props.currentSite].tagTypes).find(
-									(o) => o.id == tag.type
+									(o) => o.id === tag.type
 								).color
 							}}>
 							<div className={styles.actions}>

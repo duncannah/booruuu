@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 
-import { siteActions } from "../../../core/site";
 import { postActions } from "../../../core/post";
 import Icon from "../icon";
 
@@ -11,7 +9,7 @@ import styles from "./posts.module.scss";
 
 class Post extends React.Component {
 	render() {
-		const { id, index, thumb, score, fav, rating } = this.props;
+		const { id, thumb, score, fav, rating } = this.props;
 
 		return (
 			<div className={styles.post}>
