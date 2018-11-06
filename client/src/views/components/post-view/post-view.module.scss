@@ -39,7 +39,7 @@
 			max-height: 100%;
 			margin: auto;
 
-			transition: transform .25s;
+			transition: transform .25s, top .1s, right .1s, bottom .1s, left .1s;
 			transform: scale(1);
 			transform-origin: center center;
 

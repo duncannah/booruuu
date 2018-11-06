@@ -107,7 +107,11 @@ class PostView extends React.Component {
 	render() {
 		return (
 			<div className={classNames({ [styles.postView]: true, [styles.on]: this.props.postView.on })}>
-				<Sidebar openSettingsPopup={this.props.openSettingsPopup} postView />
+				<Sidebar
+					openSettingsPopup={this.props.openSettingsPopup}
+					postView
+					key={"side_" + this.props.postView.post.id}
+				/>
 
 				<Image post={this.props.postView.post} key={"img_" + this.props.postView.post.id} />
 			</div>
