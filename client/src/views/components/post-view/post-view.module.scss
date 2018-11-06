@@ -68,5 +68,31 @@
 
 			opacity: 1;
 		}
+
+		&.failed {
+			cursor: not-allowed !important;
+
+			&:before {
+				font-size: 2em;
+
+				position: absolute;
+				z-index: 1;
+				top: 0;
+				left: 0;
+
+				display: flex;
+
+				width: 100%;
+				height: 100%;
+				margin: auto;
+
+				content: 'Can\'t load post.';
+
+				background: #000;
+
+				align-items: center;
+				justify-content: center;
+			}
+		}
 	}
 }

@@ -14,6 +14,7 @@ class Image extends React.Component {
 		super(props);
 		this.state = {
 			imageLoaded: false,
+			loadFailed: false,
 
 			scale: 1,
 			offsetX: 0,
@@ -65,7 +66,7 @@ class Image extends React.Component {
 	render() {
 		return (
 			<div
-				className={styles.post}
+				className={classNames({ [styles.post]: true, [styles.failed]: this.state.loadFailed })}
 				onWheel={this._wheel}
 				onMouseDown={this._mouseDown}
 				onMouseMove={this._mouseMove}
@@ -78,7 +79,10 @@ class Image extends React.Component {
 					alt=""
 					draggable={false}
 					style={{
-						backgroundImage: this.state.imageLoaded ? "none" : `url(${this.props.post.thumb[0] || ""})`,
+						backgroundImage:
+							this.state.imageLoaded || this.state.loadFailed
+								? "none"
+								: `url(${this.props.post.thumb[0] || ""})`,
 						transform: `scale(${this.state.scale})`,
 						top: `${this.state.offsetY}px`,
 						bottom: `${-this.state.offsetY}px`,
@@ -87,6 +91,9 @@ class Image extends React.Component {
 					}}
 					onLoad={() => {
 						this.setState({ imageLoaded: true });
+					}}
+					onError={() => {
+						this.setState({ loadFailed: true });
 					}}
 				/>
 				<div className={styles.info} onClick={this._resetPan}>
