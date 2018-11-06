@@ -60,7 +60,11 @@
 	}
 
 	&.postView {
+		position: relative;
+		z-index: 1;
+
 		color: rgba(255, 255, 255, .6);
+		background-color: rgba(0, 0, 0, .8);
 		background-image: none;
 	}
 }
