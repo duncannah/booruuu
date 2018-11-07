@@ -120,7 +120,7 @@ class Interactive extends React.Component {
 		return (
 			<div className={classNames({ [styles.post]: true, [styles.failed]: this.state.loadFailed })}>
 				{["mp4", "webm"].includes(this.props.post.kind) ? (
-					<video controls loop poster={this.props.post.sample[0]} src={this.props.post.full[0]} />
+					<video controls loop autoPlay poster={this.props.post.sample[0]} src={this.props.post.full[0]} />
 				) : this.props.on ? (
 					<embed
 						src={this.props.post.full[0]}
