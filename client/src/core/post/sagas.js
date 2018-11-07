@@ -4,6 +4,8 @@ import { appActions } from "../app";
 import { siteActions } from "../site";
 import { postActions } from "./actions";
 
+import { API } from "../api";
+
 function* fetchPosts(wipe = false) {
 	yield put(appActions.loading("fetchPosts", true));
 
@@ -21,12 +23,7 @@ function* fetchPosts(wipe = false) {
 					.join("&")
 			: "";
 
-		const response = yield fetch(`./api/sites/${site}/post/list${query}`);
-		if (!response.ok) throw Error();
-
-		const body = yield response.json();
-		if (body.error) throw Error(`Server said "${body.errorMessage}"`);
-		if (typeof body.posts !== "object") throw Error();
+		const body = yield API.request(`sites/${site}/post/list${query}`);
 
 		if (wipe) yield put(postActions.resetPosts());
 

@@ -3,18 +3,13 @@ import { take, put, fork, select, takeLatest } from "redux-saga/effects";
 import { appActions } from "../app";
 import { siteActions } from "./actions";
 
-// TODO: create a custom function for requests
+import { API } from "../api";
 
 function* fetchSites() {
 	yield put(appActions.loading("fetchSites", true));
 
 	try {
-		const response = yield fetch("./api/sites");
-		if (!response.ok) throw Error();
-
-		const body = yield response.json();
-		if (body.error) throw Error(`Server said "${body.errorMessage}"`);
-		if (typeof body.sites !== "object" || typeof body.engines !== "object") throw Error();
+		const body = yield API.request("sites");
 
 		yield put(siteActions.addSite(body.sites, body.engines));
 		yield put(siteActions.changeSite(Object.keys(body.sites)[0]));
@@ -30,12 +25,7 @@ function* fetchPopularTags() {
 		let site = yield select((state) => state.site.currentSite);
 		let query = yield select((state) => state.post.search.query);
 
-		const response = yield fetch(`./api/sites/${site}/tag/list${query ? "?q=" + encodeURIComponent(query) : ""}`);
-		if (!response.ok) throw Error();
-
-		const body = yield response.json();
-		if (body.error) throw Error(`Server said "${body.errorMessage}"`);
-		if (typeof body.tags !== "object") throw Error();
+		const body = yield API.request(`sites/${site}/tag/list${query ? "?q=" + encodeURIComponent(query) : ""}`);
 
 		yield put(siteActions.setPopularTags(body.tags));
 	} catch (error) {
