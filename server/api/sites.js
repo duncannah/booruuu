@@ -10,7 +10,7 @@ module.exports = {
 		tagTypes: {
 			artist: { color: "rgba(255, 252, 133, .6)", id: 1, order: 0 },
 			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 1 },
-			copyright: { color: "rgba(191, 133, 255, .6)", id: 3, order: 2 },
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 2 },
 			species: { color: "rgba(255, 160, 133, .6)", id: 5, order: 3 },
 			general: { color: "", id: 0, order: 4 }
 		}
@@ -27,7 +27,7 @@ module.exports = {
 		tagTypes: {
 			artist: { color: "rgba(255, 252, 133, .6)", id: 1, order: 0 },
 			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 1 },
-			copyright: { color: "rgba(191, 133, 255, .6)", id: 3, order: 2 },
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 2 },
 			species: { color: "rgba(255, 160, 133, .6)", id: 5, order: 3 },
 			general: { color: "", id: 0, order: 4 }
 		}
@@ -39,7 +39,15 @@ module.exports = {
 
 		nsfw: true,
 
-		engine: "danbooru"
+		engine: "danbooru",
+
+		tagTypes: {
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 2 },
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 0 },
+			meta: { color: "rgba(255, 252, 133, .6)", id: 5, order: 4 },
+			general: { color: "", id: 0, order: 3 }
+		}
 	},
 
 	sankaku_chan: {

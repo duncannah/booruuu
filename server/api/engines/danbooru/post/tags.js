@@ -1,22 +1,22 @@
 const { requestHTML } = require("../../../request");
 
 module.exports = async (req, res, site) => {
-	// TODO: tag types
+	if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
 
-	let url = `${site.url}/posts?${req.query.hasOwnProperty("q") ? "tags=" + encodeURIComponent(req.query.q) : ""}`;
+	let url = `${site.url}/posts/${parseInt(req.query.id)}`;
 
 	const $ = await requestHTML(url);
 
 	let tags = [];
 
-	$("#tag-box ul li a.search-tag").each((i, el) => {
-		tags.push({
-			name: decodeURIComponent(
+	$("#tag-list ul li a.search-tag").each((i, el) => {
+		tags.push([
+			decodeURIComponent(
 				$(el)
 					.attr("href")
 					.replace("/posts?tags=", "")
 			),
-			count: $(el)
+			$(el)
 				.next()
 				.text()
 				.endsWith("k")
@@ -31,12 +31,12 @@ module.exports = async (req, res, site) => {
 							.next()
 							.text()
 				  ) || -1,
-			type: parseInt(
+			parseInt(
 				$(el.parent)
 					.attr("class")
 					.substr(-1)
 			)
-		});
+		]);
 	});
 
 	res.json({ tags: tags });
