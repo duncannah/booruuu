@@ -12,6 +12,10 @@ This is still in alpha stage, so bugs are pretty common; always except things to
 
 I have beginner-level knowledge in development, thus the code might not be on par with what you might be used to. English is not my mother tongue, so you might also encounter some mistakes in typing.
 
+# Ready to go
+
+I'll attempt to have a production version working as much as possible: https://erman.rocks/services/booruuu/ (should update every commit)
+
 # Currently supported websites
 
 -   e926
