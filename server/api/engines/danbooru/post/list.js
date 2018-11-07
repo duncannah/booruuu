@@ -24,6 +24,7 @@ module.exports = async (req, res, site) => {
 		// API doesn't specify if post is gold only -- https://danbooru.donmai.us/forum_topics/4788
 		if (
 			!post.is_deleted &&
+			!post.is_banned &&
 			!post.tag_string.includes("shota") &&
 			!post.tag_string.includes("loli") &&
 			!post.tag_string.includes("toddlercon")
