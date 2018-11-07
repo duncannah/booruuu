@@ -38,12 +38,12 @@ class Image extends React.Component {
 	};
 
 	_wheel = (e) => {
-		let scaleMultiplier = e.deltaY < 0 ? 1 + 0.065 : 1 - 0.065;
-		let newScale = this.state.scale * scaleMultiplier;
+		let zoom = Math.exp((e.deltaY < 0 ? 1 : -1) * 0.065);
+		let newScale = this.state.scale * zoom;
 
-		if (Math.round(newScale * 10) === 10) newScale = 1;
-
-		this.setState({ scale: Math.max(0.1, Math.min(15, newScale)) });
+		this.setState({
+			scale: Math.max(0.1, Math.min(15, newScale))
+		});
 	};
 
 	_mouseDown = (e) => {
@@ -66,36 +66,40 @@ class Image extends React.Component {
 	render() {
 		return (
 			<div
-				className={classNames({ [styles.post]: true, [styles.failed]: this.state.loadFailed })}
+				className={classNames({
+					[styles.post]: true,
+					[styles.failed]: this.state.loadFailed
+				})}
 				onWheel={this._wheel}
 				onMouseDown={this._mouseDown}
 				onMouseMove={this._mouseMove}
 				onMouseUp={this._mouseUp}
-				style={{
-					cursor: this.state.mouseDown ? "grabbing" : "grab"
-				}}>
-				<img
-					src={this.props.post.full[0] || ""}
-					alt=""
-					draggable={false}
+				style={{ cursor: this.state.mouseDown ? "grabbing" : "grab" }}>
+				<div
+					className={styles.viewport}
 					style={{
-						backgroundImage:
-							this.state.imageLoaded || this.state.loadFailed
-								? "none"
-								: `url(${this.props.post.thumb[0] || ""})`,
-						transform: `scale(${this.state.scale})`,
-						top: `${this.state.offsetY}px`,
-						bottom: `${-this.state.offsetY}px`,
-						left: `${this.state.offsetX}px`,
-						right: `${-this.state.offsetX}px`
-					}}
-					onLoad={() => {
-						this.setState({ imageLoaded: true });
-					}}
-					onError={() => {
-						this.setState({ loadFailed: true });
-					}}
-				/>
+						transform: `scale(${this.state.scale}) translate(${this.state.offsetX}px, ${
+							this.state.offsetY
+						}px)`
+					}}>
+					<img
+						src={this.props.post.full[0] || ""}
+						alt=""
+						draggable={false}
+						style={{
+							backgroundImage:
+								this.state.imageLoaded || this.state.loadFailed
+									? "none"
+									: `url(${this.props.post.thumb[0] || ""})`
+						}}
+						onLoad={() => {
+							this.setState({ imageLoaded: true });
+						}}
+						onError={() => {
+							this.setState({ loadFailed: true });
+						}}
+					/>
+				</div>
 				<div className={styles.info} onClick={this._resetPan}>
 					{Math.round(this.state.scale * 100)}%
 				</div>
