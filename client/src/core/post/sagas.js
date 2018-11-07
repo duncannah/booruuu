@@ -36,7 +36,15 @@ function* fetchPosts(wipe = false) {
 }
 
 function* fetchPostTags(payload) {
-	// TODO: request post tags
+	try {
+		let site = yield select((state) => state.site.currentSite);
+
+		const body = yield API.request(`sites/${site}/post/tags?id=${payload}`);
+
+		yield put(postActions.setPostTags(body.tags.sort()));
+	} catch (e) {
+		yield put(appActions.notify(`Couldn't fetch tags`, e));
+	}
 }
 
 function* fetchPostInfo(payload) {

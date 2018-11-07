@@ -9,14 +9,7 @@ module.exports = async (req, res, site) => {
 
 	let tags = [];
 
-	for (const tag of json) {
-		tags.push({
-			id: tag.id,
-			name: tag.name,
-			count: tag.count,
-			type: tag.type
-		});
-	}
+	for (const tag of json) tags.push([tag.name, tag.count, tag.type]);
 
 	res.json({ tags: tags });
 };

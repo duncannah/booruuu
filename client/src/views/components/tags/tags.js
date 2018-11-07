@@ -50,7 +50,7 @@ class PostTags extends React.Component {
 													<div className={styles.info}>?</div>
 												</div>
 												{tag[0]}
-												<div className={styles.count}>{tag[1] > 0 ? tag[1] : ""}</div>
+												<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
 											</div>
 										</CSSTransition>
 									);
