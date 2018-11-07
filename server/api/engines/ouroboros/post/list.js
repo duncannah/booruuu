@@ -32,6 +32,7 @@ module.exports = async (req, res, site) => {
 			author: post.author,
 			sources: post.sources || [],
 			fileSize: post.file_size,
+			kind: post.file_ext,
 			md5: post.md5,
 			rating: { s: 0, q: 1, e: 2 }[post.rating],
 

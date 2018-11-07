@@ -15,7 +15,7 @@ module.exports = async (req, res, site) => {
 		// TODO: replace "true" with "page === 1" when pages are implemented
 		if (true && i < 3) return;
 
-		posts.push({
+		let toPush = {
 			id: parseInt(
 				$(el)
 					.attr("id")
@@ -33,6 +33,7 @@ module.exports = async (req, res, site) => {
 					.match(/Score:(.*?) /)[1]
 			),
 			fav: -1,
+			kind: "png",
 			rating: { Safe: 0, Questionable: 1, Explicit: 2 }[
 				$(el)
 					.find("img")
@@ -56,31 +57,13 @@ module.exports = async (req, res, site) => {
 						.attr("height")
 				)
 			}
-		});
+		};
+
+		if (toPush.tags.includes("video")) toPush.kind = "mp4";
+		else if (toPush.tags.includes("flash")) toPush.kind = "swf";
+
+		posts.push(toPush);
 	});
-
-	/*
-
-	for (const post of json) {
-		let w = (h = 150);
-		if (!post.hasOwnProperty("preview_width")) {
-			if (post.width > post.height) h = 150 / (post.width / post.height);
-			else if (post.width < post.height) w = 150 * (post.width / post.height);
-		}
-
-		posts.push({
-			id: post.id,
-			tags: post.tags,
-			score: post.score,
-			fav: post.fav_count,
-			rating: { s: 0, q: 1, e: 2 }[post.rating],
-			thumb: {
-				url: post.preview_url,
-				width: Math.floor(post.preview_width || w),
-				height: Math.floor(post.preview_height || h)
-			}
-		});
-	}*/
 
 	res.json({ posts: posts });
 };

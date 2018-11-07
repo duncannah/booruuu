@@ -108,10 +108,40 @@ class Image extends React.Component {
 	}
 }
 
+class Interactive extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			loadFailed: false
+		};
+	}
+
+	render() {
+		return (
+			<div className={classNames({ [styles.post]: true, [styles.failed]: this.state.loadFailed })}>
+				{["mp4", "webm"].includes(this.props.post.kind) ? (
+					<video controls loop poster={this.props.post.sample[0]} src={this.props.post.full[0]} />
+				) : this.props.on ? (
+					<embed
+						src={this.props.post.full[0]}
+						width={this.props.post.full[1]}
+						height={this.props.post.full[2]}
+					/>
+				) : (
+					""
+				)}
+			</div>
+		);
+	}
+}
+
 class PostView extends React.Component {
 	componentDidMount() {
 		document.addEventListener("keyup", (e) => {
-			if (e.key === "Escape" && this.props.in) this.props.stopViewingPost();
+			if (e.key === "Escape" && this.props.in) {
+				(document.querySelector("video") || { pause: () => {} }).pause();
+				this.props.stopViewingPost();
+			}
 		});
 	}
 
@@ -124,7 +154,15 @@ class PostView extends React.Component {
 					key={"side_" + this.props.postView.post.id}
 				/>
 
-				<Image post={this.props.postView.post} key={"img_" + this.props.postView.post.id} />
+				{["mp4", "webm", "swf"].includes(this.props.postView.post.kind) ? (
+					<Interactive
+						post={this.props.postView.post}
+						key={"img_" + this.props.postView.post.id}
+						on={this.props.postView.on}
+					/>
+				) : (
+					<Image post={this.props.postView.post} key={"img_" + this.props.postView.post.id} />
+				)}
 			</div>
 		);
 	}

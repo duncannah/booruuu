@@ -21,6 +21,7 @@ module.exports = async (req, res, site) => {
 			tags: post.tags,
 			score: post.score,
 			fav: post.fav_count,
+			kind: post.file_url.substr(a.lastIndexOf(".") + 1),
 			rating: { s: 0, q: 1, e: 2 }[post.rating],
 			thumb: {
 				url: post.preview_url,
