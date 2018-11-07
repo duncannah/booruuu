@@ -4,6 +4,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import styles from "./tags.module.scss";
 
+import { postActions } from "../../../core/post/actions";
+
 class PopularTags extends React.Component {
 	render() {
 		return (
@@ -16,14 +18,21 @@ class PopularTags extends React.Component {
 								color: Object.values(this.props.sites[this.props.currentSite].tagTypes).find(
 									(o) => o.id === tag.type
 								).color
-							}}>
+							}}
+							data-tag={tag.name}>
 							<div className={styles.actions}>
 								<div className={styles.info}>?</div>
-								<div className={styles.add}>+</div>
-								<div className={styles.substract}>-</div>
+								<div className={styles.add} onClick={this.props.addTag}>
+									+
+								</div>
+								<div className={styles.substract} onClick={this.props.excludeTag}>
+									-
+								</div>
 							</div>
-							{tag.name}
-							<div className={styles.count}>{tag.count}</div>
+							<div onClick={this.props.searchTag}>
+								{tag.name.replace(/_/g, " ")}
+								<div className={styles.count}>{tag.count > 0 ? tag.count : ""}</div>
+							</div>
 						</div>
 					</CSSTransition>
 				))}
@@ -45,12 +54,14 @@ class PostTags extends React.Component {
 								else
 									return (
 										<CSSTransition timeout={300} classNames="_fade" key={tag[0]}>
-											<div className={styles.tag}>
+											<div className={styles.tag} data-tag={tag[0]}>
 												<div className={styles.actions}>
 													<div className={styles.info}>?</div>
 												</div>
-												{tag[0]}
-												<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
+												<div onClick={this.props.searchTag}>
+													{tag[0].replace("_", " ")}
+													<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
+												</div>
 											</div>
 										</CSSTransition>
 									);
@@ -72,8 +83,47 @@ class PostTags extends React.Component {
 }
 
 class Tags extends React.Component {
+	searchTag = (e) => {
+		let tag = e.currentTarget.parentNode.getAttribute("data-tag");
+		if (this.props.query !== tag) {
+			this.props.setQueryBuffer(tag);
+			this.props.search();
+		}
+	};
+
+	addTag = (e) => {
+		let tag = e.currentTarget.parentNode.parentNode.getAttribute("data-tag");
+
+		if (this.props.queryBuffer.split(" ").includes("-" + tag)) {
+			this.props.setQueryBuffer(this.props.queryBuffer.replace(new RegExp("-" + tag, "g"), tag));
+			this.props.search();
+		} else if (!this.props.queryBuffer.split(" ").includes(tag)) {
+			this.props.setQueryBuffer(this.props.queryBuffer + " " + tag);
+			this.props.search();
+		}
+	};
+
+	excludeTag = (e) => {
+		let tag = e.currentTarget.parentNode.parentNode.getAttribute("data-tag");
+
+		if (this.props.queryBuffer.split(" ").includes(tag)) {
+			if (tag.includes(":")) this.props.setQueryBuffer(this.props.queryBuffer.replace(new RegExp(tag, "g"), ""));
+			else {
+				this.props.setQueryBuffer(this.props.queryBuffer.replace(new RegExp(tag, "g"), "-" + tag));
+				this.props.search();
+			}
+		} else if (!this.props.queryBuffer.split(" ").includes("-" + tag) && !tag.includes(":")) {
+			this.props.setQueryBuffer(this.props.queryBuffer + " -" + tag);
+			this.props.search();
+		}
+	};
+
 	render() {
-		return this.props.postView ? <PostTags {...this.props} /> : <PopularTags {...this.props} />;
+		return this.props.postView ? (
+			<PostTags {...this.props} searchTag={this.searchTag} addTag={this.addTag} excludeTag={this.excludeTag} />
+		) : (
+			<PopularTags {...this.props} searchTag={this.searchTag} addTag={this.addTag} excludeTag={this.excludeTag} />
+		);
 	}
 }
 
@@ -84,12 +134,15 @@ const mapStateToProps = (state) => {
 		popularTags: state.site.popularTags,
 		sites: state.site.sites,
 		currentSite: state.site.currentSite,
-		post: state.post.postView
+		post: state.post.postView,
+		queryBuffer: state.post.search.queryBuffer,
+		query: state.post.search.query
 	};
 };
 
 const mapDispatchToProps = {
-	//dismissNotif: appActions.dismissNotif
+	setQueryBuffer: postActions.setQueryBuffer,
+	search: postActions.search
 };
 
 export default connect(

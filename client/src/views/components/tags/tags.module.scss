@@ -12,16 +12,16 @@
 	}
 
 	.tag {
-		.actions, .actions div {
+		div {
 			display: inline-block;
+		}
 
+		.actions, .actions div {
 			margin-right: 4px;
 		}
 
 		.count {
 			font-size: 50%;
-
-			display: inline-block;
 
 			margin-left: 5px;
 		}
