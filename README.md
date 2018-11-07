@@ -28,7 +28,7 @@ For general development (runs both API server and client server): `npm run dev`
 
 Run API server only: `PORT=5000 npm run server`
 
-To compile client (to be served by a web server): `cd client; npm run build`
+To compile client (to be served by a web server): `cd client; PUBLIC_URL=./ npm run build`
 
 # Using it with NGINX
 

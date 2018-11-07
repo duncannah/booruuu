@@ -119,6 +119,10 @@ export function postReducer(state = initialState, action) {
 					...state.search,
 					isSearching: !!state.search.queryBuffer,
 					query: state.search.queryBuffer || ""
+				},
+				postView: {
+					...state.postView,
+					on: false
 				}
 			};
 
