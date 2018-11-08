@@ -59,7 +59,7 @@ class PostTags extends React.Component {
 													<div className={styles.info}>?</div>
 												</div>
 												<div onClick={this.props.searchTag}>
-													{tag[0].replace("_", " ")}
+													{tag[0].replace(/_/g, " ")}
 													<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
 												</div>
 											</div>
