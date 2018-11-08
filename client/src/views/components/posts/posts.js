@@ -24,10 +24,14 @@ class Post extends React.Component {
 							})}>
 							{Math.abs(score)}
 						</span>
-						<span className={styles.favs}>
-							<Icon name="favorite" className={styles.icon} />
-							{fav}
-						</span>
+						{fav !== -1 ? (
+							<span className={styles.favs}>
+								<Icon name="favorite" className={styles.icon} />
+								{fav}
+							</span>
+						) : (
+							""
+						)}
 						<span
 							className={classNames({
 								[styles.rating]: true,

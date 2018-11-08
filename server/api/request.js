@@ -13,8 +13,14 @@ module.exports = {
 
 	requestJSON: async (url, scraping = false) => {
 		const booru = await module.exports.request(url, scraping);
+		let json;
 
-		const json = await booru.json();
+		try {
+			json = await booru.json();
+		} catch (e) {
+			return [];
+		}
+
 		if (json.hasOwnProperty("success") && !json.success) throw Error(`Booru said: "${booru.reason}"`);
 
 		return json;

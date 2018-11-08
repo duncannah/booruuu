@@ -50,6 +50,23 @@ module.exports = {
 		}
 	},
 
+	gelbooru: {
+		name: "gelbooru.com",
+		url: "https://gelbooru.com",
+
+		nsfw: true,
+
+		engine: "gelbooru",
+
+		tagTypes: {
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 2 },
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 0 },
+			metadata: { color: "rgba(255, 252, 133, .6)", id: 5, order: 4 },
+			general: { color: "", id: 0, order: 3 }
+		}
+	},
+
 	sankaku_chan: {
 		name: "chan.sankakucomplex.com",
 		url: "https://chan.sankakucomplex.com",

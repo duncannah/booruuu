@@ -21,6 +21,7 @@ I'll attempt to have a production version working as much as possible: https://e
 -   e926
 -   e621 🔞
 -   Danbooru 🔞
+-   Gelbooru 🔞
 -   Sankaku Channel 🔞
 
 # How to run
