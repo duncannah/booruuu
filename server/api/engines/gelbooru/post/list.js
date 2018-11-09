@@ -3,7 +3,7 @@ const { requestJSON } = require("../../../request");
 module.exports = async (req, res, site) => {
 	// TODO: pages
 
-	let url = `${site.url}/index.php?page=dapi&s=post&q=index&json=1&limit=75&tags=${encodeURIComponent(
+	let url = `${site.url}/index.php?page=dapi&s=post&q=index&json=1&limit=%L&tags=${encodeURIComponent(
 		req.query.q || ""
 	)}`;
 

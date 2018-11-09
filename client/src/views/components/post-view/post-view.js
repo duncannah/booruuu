@@ -83,14 +83,14 @@ class Image extends React.Component {
 						}px)`
 					}}>
 					<img
-						src={this.props.post.full[0] || ""}
+						src={this.props.post.full[0]}
 						alt=""
 						draggable={false}
 						style={{
 							backgroundImage:
 								this.state.imageLoaded || this.state.loadFailed
 									? "none"
-									: `url(${this.props.post.thumb[0] || ""})`
+									: `url(${this.props.post.thumb[0]})`
 						}}
 						onLoad={() => {
 							this.setState({ imageLoaded: true });
@@ -98,6 +98,7 @@ class Image extends React.Component {
 						onError={() => {
 							this.setState({ loadFailed: true });
 						}}
+						key={this.props.post.full[0]}
 					/>
 				</div>
 				<div className={styles.info} onClick={this._resetPan}>

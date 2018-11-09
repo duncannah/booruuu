@@ -3,7 +3,9 @@ module.exports = {
 	tag: require("./tag"),
 
 	engineInfo: {
-		seperateTagReq: 2,
-		seperateInfoReq: 2
+		seperateTagReq: false,
+		seperateInfoReq: false,
+
+		relatedTagsInclInPosts: false
 	}
 };

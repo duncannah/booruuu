@@ -38,11 +38,6 @@ export const postActions = {
 		type: postActions.STOP_VIEWING_POST
 	}),
 
-	setPostTags: (tags) => ({
-		type: postActions.SET_POST_TAGS,
-		payload: tags
-	}),
-
 	setPostInfo: (info) => ({
 		type: postActions.SET_POST_INFO,
 		payload: info

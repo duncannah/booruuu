@@ -1,13 +1,9 @@
 const { requestHTML } = require("../../../request");
 
 module.exports = async (req, res, site) => {
-	// TODO: tag types
-
-	// API either too unstable or they disabled it again
-	// so we're HTML scraping
 	let url = `${site.url}/tag/index?order=count`;
 
-	if (req.query.q) url = `${site.url}/?tags=${encodeURIComponent(req.query.q)}`;
+	if (req.query.q) url = `${site.url}/?tags=${encodeURIComponent(req.query.q)}&commit=Search`;
 
 	const $ = await requestHTML(url);
 
@@ -27,7 +23,14 @@ module.exports = async (req, res, site) => {
 						.children()
 						.last()
 						.text()
-				)
+				),
+				type: (
+					site.tagTypes[
+						$(el.parent)
+							.attr("class")
+							.substr(9)
+					] || { id: -1 }
+				).id
 			});
 		});
 	else
@@ -48,7 +51,17 @@ module.exports = async (req, res, site) => {
 						.children()
 						.first()
 						.text()
-				)
+				),
+				type: (
+					site.tagTypes[
+						$(el)
+							.children()
+							.first()
+							.next()
+							.attr("class")
+							.substr(9)
+					] || { id: -1 }
+				).id
 			});
 		});
 

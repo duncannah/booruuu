@@ -1,11 +1,14 @@
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 
-const { fetchOpt, fetchOptScraping } = require("./constants");
+const { fetchOpt, fetchOptScraping, POST_LIMIT, POST_LIMIT_TAXING } = require("./constants");
 
 module.exports = {
 	request: async (url, scraping = false) => {
-		const booru = await fetch(url, scraping ? fetchOptScraping() : fetchOpt());
+		const booru = await fetch(
+			url.replace("%LT", POST_LIMIT_TAXING).replace("%L", POST_LIMIT),
+			scraping ? fetchOptScraping() : fetchOpt()
+		);
 		if (!booru.ok) throw Error(`Booru returned ${booru.status}`);
 
 		return booru;

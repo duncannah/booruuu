@@ -41,14 +41,33 @@ function* fetchPostTags(payload) {
 
 		const body = yield API.request(`sites/${site}/post/tags?id=${payload}`);
 
-		yield put(postActions.setPostTags(body.tags.sort()));
+		yield put(postActions.setPostInfo({ tags: body.tags.sort() }));
 	} catch (e) {
 		yield put(appActions.notify(`Couldn't fetch tags`, e));
 	}
 }
 
 function* fetchPostInfo(payload) {
-	// TODO: request post info
+	try {
+		let site = yield select((state) => state.site.currentSite);
+
+		const body = yield API.request(`sites/${site}/post/info?id=${payload}`);
+
+		yield put(postActions.setPostInfo(body.info));
+	} catch (e) {
+		yield put(appActions.notify(`Couldn't fetch info`, e));
+	}
+}
+
+function* postViewOn({ payload }) {
+	let engine = yield select((state) => state.site.engines[state.site.sites[state.site.currentSite].engine]);
+
+	let info = yield select((state) => state.post.posts.find((p) => p.id === payload));
+	info.tags = info.tags ? info.tags.sort() : [];
+	yield put(postActions.setPostInfo(info));
+
+	if (engine.seperateInfoReq) yield fork(fetchPostInfo, payload);
+	else if (engine.seperateTagReq) yield fork(fetchPostTags, payload);
 }
 
 function* siteChanged() {
@@ -61,26 +80,11 @@ function* search() {
 	yield fork(fetchPosts, true);
 }
 
-function* postViewOn({ payload }) {
-	let site = yield select((state) => state.site.sites[state.site.currentSite]);
-	let engine = yield select((state) => state.site.engines[site.engine]);
-
-	if (engine.seperateTagReq) yield fork(fetchPostTags, payload);
-
-	if (engine.seperateTagReq !== 2) {
-		let tags = yield select((state) => state.post.posts.find((p) => p.id === payload).tags);
-		yield put(postActions.setPostTags(tags.sort()));
-	}
-
-	if (engine.seperateInfoReq) yield fork(fetchPostInfo, payload);
-
-	if (engine.seperateInfoReq !== 2) {
-		let info = yield select((state) => state.post.posts.find((p) => p.id === payload));
-		yield put(postActions.setPostInfo(info));
-	}
-}
-
 // WATCHERS
+
+function* watchPostViewOn() {
+	yield takeEvery(postActions.START_VIEWING_POST, postViewOn);
+}
 
 function* watchSiteChanged() {
 	yield takeLatest(siteActions.CHANGE_SITE, siteChanged);
@@ -88,10 +92,6 @@ function* watchSiteChanged() {
 
 function* watchSearch() {
 	yield takeLatest(postActions.SEARCH, search);
-}
-
-function* watchPostViewOn() {
-	yield takeEvery(postActions.START_VIEWING_POST, postViewOn);
 }
 
 // ROOT

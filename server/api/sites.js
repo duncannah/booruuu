@@ -73,6 +73,16 @@ module.exports = {
 
 		nsfw: true,
 
-		engine: "sankaku"
+		engine: "sankaku",
+
+		tagTypes: {
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 3 },
+			studio: { color: "rgba(255, 133, 226, .6)", id: 2, order: 1 },
+			character: { color: "rgba(133, 255, 133, .6)", id: 4, order: 2 },
+			copyright: { color: "rgba(160, 84, 160, .6)", id: 3, order: 0 },
+			medium: { color: "rgba(133, 210, 255, .6)", id: 8, order: 4 },
+			meta: { color: "rgba(177, 133, 255, .6)", id: 5, order: 6 },
+			general: { color: "", id: 0, order: 5 }
+		}
 	}
 };

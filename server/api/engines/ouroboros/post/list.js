@@ -3,7 +3,7 @@ const { requestJSON } = require("../../../request");
 module.exports = async (req, res, site) => {
 	// TODO: pages
 
-	let url = `${site.url}/post/index.json?typed_tags=true&limit=75&tags=${encodeURIComponent(req.query.q || "")}`;
+	let url = `${site.url}/post/index.json?typed_tags=true&limit=%L&tags=${encodeURIComponent(req.query.q || "")}`;
 
 	const json = await requestJSON(url);
 

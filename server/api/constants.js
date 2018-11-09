@@ -1,3 +1,6 @@
+const POST_LIMIT = 75;
+const POST_LIMIT_TAXING = 30;
+
 const userAgents = [
 	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
 	"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0",
@@ -99,5 +102,8 @@ module.exports = {
 				"Cache-Control": "max-age=0"
 			}
 		};
-	}
+	},
+
+	POST_LIMIT,
+	POST_LIMIT_TAXING
 };
