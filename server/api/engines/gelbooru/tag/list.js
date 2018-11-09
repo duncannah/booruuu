@@ -10,31 +10,30 @@ module.exports = async (req, res, site) => {
 	let tags = [];
 
 	$("#tag-list li[class^='tag-type-'] a:first-child").each((i, el) => {
-		tags.push({
-			name: decodeURIComponent(
+		tags.push([
+			decodeURIComponent(
 				$(el)
 					.attr("href")
 					.substr(34)
 			),
 
-			count:
-				parseInt(
-					$(el)
-						.next()
-						.next()
-						.next()
-						.next()
-						.text()
-				) || -1,
+			parseInt(
+				$(el)
+					.next()
+					.next()
+					.next()
+					.next()
+					.text()
+			) || -1,
 
-			type: (
+			(
 				site.tagTypes[
 					$(el.parent)
 						.attr("class")
 						.substr(9)
 				] || { id: -1 }
 			).id
-		});
+		]);
 	});
 
 	res.json({ tags: tags });

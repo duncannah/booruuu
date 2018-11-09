@@ -11,32 +11,34 @@ module.exports = async (req, res, site) => {
 
 	if (req.query.q)
 		$("#tag-sidebar li a[itemprop=keywords]").each((i, el) => {
-			tags.push({
-				name: decodeURIComponent(
+			tags.push([
+				decodeURIComponent(
 					$(el)
 						.attr("href")
 						.replace("/?tags=", "")
 				),
-				count: parseInt(
+
+				parseInt(
 					$(el)
 						.next()
 						.children()
 						.last()
 						.text()
 				),
-				type: (
+
+				(
 					site.tagTypes[
 						$(el.parent)
 							.attr("class")
 							.substr(9)
 					] || { id: -1 }
 				).id
-			});
+			]);
 		});
 	else
 		$(".highlightable tbody tr").each((i, el) => {
-			tags.push({
-				name: decodeURIComponent(
+			tags.push([
+				decodeURIComponent(
 					$(el)
 						.children()
 						.first()
@@ -46,13 +48,15 @@ module.exports = async (req, res, site) => {
 						.attr("href")
 						.replace("/?tags=", "")
 				),
-				count: parseInt(
+
+				parseInt(
 					$(el)
 						.children()
 						.first()
 						.text()
 				),
-				type: (
+
+				(
 					site.tagTypes[
 						$(el)
 							.children()
@@ -62,7 +66,7 @@ module.exports = async (req, res, site) => {
 							.substr(9)
 					] || { id: -1 }
 				).id
-			});
+			]);
 		});
 
 	res.json({ tags: tags });

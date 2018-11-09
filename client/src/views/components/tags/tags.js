@@ -11,15 +11,17 @@ class PopularTags extends React.Component {
 		return (
 			<TransitionGroup className={styles.tags}>
 				{this.props.popularTags.map((tag) => (
-					<CSSTransition timeout={300} classNames="_fade" key={tag.name}>
+					<CSSTransition timeout={300} classNames="_fade" key={tag[0]}>
 						<div
 							className={styles.tag}
 							style={{
-								color: Object.values(this.props.sites[this.props.currentSite].tagTypes).find(
-									(o) => o.id === tag.type
+								color: (
+									Object.values(this.props.sites[this.props.currentSite].tagTypes).find(
+										(o) => o.id === tag[2]
+									) || { color: "" }
 								).color
 							}}
-							data-tag={tag.name}>
+							data-tag={tag[0]}>
 							<div className={styles.actions}>
 								<div className={styles.info}>?</div>
 								<div className={styles.add} onClick={this.props.addTag}>
@@ -30,8 +32,8 @@ class PopularTags extends React.Component {
 								</div>
 							</div>
 							<div onClick={this.props.searchTag}>
-								{tag.name.replace(/_/g, " ")}
-								<div className={styles.count}>{tag.count > 0 ? tag.count : ""}</div>
+								{tag[0].replace(/_/g, " ")}
+								<div className={styles.count}>{tag[1] > 0 ? tag[1] : ""}</div>
 							</div>
 						</div>
 					</CSSTransition>

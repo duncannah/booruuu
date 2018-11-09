@@ -10,13 +10,13 @@ module.exports = async (req, res, site) => {
 	let tags = [];
 
 	$("#tag-box ul li a.search-tag").each((i, el) => {
-		tags.push({
-			name: decodeURIComponent(
+		tags.push([
+			decodeURIComponent(
 				$(el)
 					.attr("href")
 					.replace("/posts?tags=", "")
 			),
-			count: $(el)
+			$(el)
 				.next()
 				.text()
 				.endsWith("k")
@@ -31,12 +31,12 @@ module.exports = async (req, res, site) => {
 							.next()
 							.text()
 				  ) || -1,
-			type: parseInt(
+			parseInt(
 				$(el.parent)
 					.attr("class")
 					.substr(-1)
 			)
-		});
+		]);
 	});
 
 	res.json({ tags: tags });

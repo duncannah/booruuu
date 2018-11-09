@@ -13,18 +13,8 @@ module.exports = async (req, res, site) => {
 
 	if (req.query.q)
 		for (const tag of json)
-			tags.push({
-				name: tag[0],
-				count: tag[1],
-				type: { general: 0, artist: 1, copyright: 3, character: 4, species: 5 }[tag[2]]
-			});
-	else
-		for (const tag of json)
-			tags.push({
-				name: tag.name,
-				count: tag.count,
-				type: tag.type
-			});
+			tags.push([tag[0], tag[1], { general: 0, artist: 1, copyright: 3, character: 4, species: 5 }[tag[2]]]);
+	else for (const tag of json) tags.push([tag.name, tag.count, tag.type]);
 
 	res.json({ tags: tags });
 };
