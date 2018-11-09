@@ -28,10 +28,10 @@ class Sidebar extends React.Component {
 					</div>
 					<a
 						className={styles.link}
-						href="https://twitter.com/duncannahh"
+						href="https://github.com/duncannah/booruuu"
 						target="_blank"
 						rel="noopener noreferrer">
-						@duncannahh
+						@duncannah/booruuu
 					</a>
 				</div>
 			</div>
