@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
-//import { CSSTransition } from "react-transition-group";
 
 import { postActions } from "../../../core/post";
 

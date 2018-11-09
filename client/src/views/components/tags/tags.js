@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import styles from "./tags.module.scss";
 
@@ -9,36 +8,35 @@ import { postActions } from "../../../core/post/actions";
 class PopularTags extends React.Component {
 	render() {
 		return (
-			<TransitionGroup className={styles.tags}>
+			<div className={styles.tags}>
 				{this.props.popularTags.map((tag) => (
-					<CSSTransition timeout={300} classNames="_fade" key={tag[0]}>
-						<div
-							className={styles.tag}
-							style={{
-								color: (
-									Object.values(this.props.sites[this.props.currentSite].tagTypes).find(
-										(o) => o.id === tag[2]
-									) || { color: "" }
-								).color
-							}}
-							data-tag={tag[0]}>
-							<div className={styles.actions}>
-								<div className={styles.info}>?</div>
-								<div className={styles.add} onClick={this.props.addTag}>
-									+
-								</div>
-								<div className={styles.substract} onClick={this.props.excludeTag}>
-									-
-								</div>
+					<div
+						className={styles.tag}
+						style={{
+							color: (
+								Object.values(this.props.sites[this.props.currentSite].tagTypes).find(
+									(o) => o.id === tag[2]
+								) || { color: "" }
+							).color
+						}}
+						key={tag[0]}
+						data-tag={tag[0]}>
+						<div className={styles.actions}>
+							<div className={styles.info}>?</div>
+							<div className={styles.add} onClick={this.props.addTag}>
+								+
 							</div>
-							<div onClick={this.props.searchTag}>
-								{tag[0].replace(/_/g, " ")}
-								<div className={styles.count}>{tag[1] > 0 ? tag[1] : ""}</div>
+							<div className={styles.substract} onClick={this.props.excludeTag}>
+								-
 							</div>
 						</div>
-					</CSSTransition>
+						<div onClick={this.props.searchTag}>
+							{tag[0].replace(/_/g, " ")}
+							<div className={styles.count}>{tag[1] > 0 ? tag[1] : ""}</div>
+						</div>
+					</div>
 				))}
-			</TransitionGroup>
+			</div>
 		);
 	}
 }
@@ -55,24 +53,22 @@ class PostTags extends React.Component {
 								if (tag[2] !== type.id) return [];
 								else
 									return (
-										<CSSTransition timeout={300} classNames="_fade" key={tag[0]}>
-											<div className={styles.tag} data-tag={tag[0]}>
-												<div className={styles.actions}>
-													<div className={styles.info}>?</div>
-												</div>
-												<div onClick={this.props.searchTag}>
-													{tag[0].replace(/_/g, " ")}
-													<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
-												</div>
+										<div className={styles.tag} key={tag[0]} data-tag={tag[0]}>
+											<div className={styles.actions}>
+												<div className={styles.info}>?</div>
 											</div>
-										</CSSTransition>
+											<div onClick={this.props.searchTag}>
+												{tag[0].replace(/_/g, " ")}
+												<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
+											</div>
+										</div>
 									);
 							});
 
 							return tags.flat().length > 0 ? (
 								<div className={styles.type} style={{ color: type.color }} key={name}>
 									<div className={styles.name}>{name}</div>
-									<TransitionGroup>{tags}</TransitionGroup>
+									<div>{tags}</div>
 								</div>
 							) : (
 								""
