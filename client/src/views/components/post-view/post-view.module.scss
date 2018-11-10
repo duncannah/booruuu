@@ -26,6 +26,8 @@
 	.post {
 		position: relative;
 
+		user-select: none;
+
 		flex-grow: 1;
 
 		.viewport {
@@ -37,6 +39,46 @@
 
 			transform: scale(1);
 			transform-origin: center center;
+
+			.note {
+				position: absolute;
+				z-index: 1;
+				top: 0;
+				left: 0;
+
+				border: solid 1px var(--color-main-rgba-6);
+				background: rgba(255, 255, 255, .4);
+
+				.noteBody {
+					line-height: 1;
+
+					position: absolute;
+
+					margin: -1px;
+					padding: 1px 2px;
+
+					white-space: pre-wrap;
+					pointer-events: none;
+
+					opacity: 0;
+					color: var(--color-main);
+					border: inherit;
+					background: inherit;
+				}
+
+				&[data-align='right'] .noteBody {
+					right: 0;
+				}
+
+				&:hover {
+					border: solid 1px var(--color-main-rgba-8);
+					background: rgba(255, 255, 255, .6);
+
+					.noteBody {
+						opacity: 1;
+					}
+				}
+			}
 		}
 
 		img, video, embed {

@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import classNames from "classnames";
 
@@ -26,11 +27,42 @@ class Image extends React.Component {
 
 	componentDidMount() {
 		window.addEventListener("resize", this._resetPan);
+		window.addEventListener("resize", this._updateNotes);
+
+		this._updateNotes();
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener("resize", this._resetPan);
+		window.removeEventListener("resize", this._updateNotes);
 	}
+
+	componentDidUpdate() {
+		this._updateNotes();
+	}
+
+	_updateNotes = () => {
+		const node = ReactDOM.findDOMNode(this);
+
+		if (node instanceof HTMLElement) {
+			const img = node.querySelector(`.${styles.viewport} img`);
+			node.querySelectorAll(`.${styles.note}`).forEach((el) => {
+				el.style.width = `${(parseInt(el.getAttribute("data-w")) * img.offsetWidth) /
+					this.props.post.full[1]}px`;
+				el.style.height = `${(parseInt(el.getAttribute("data-h")) * img.offsetHeight) /
+					this.props.post.full[2]}px`;
+				el.style.top = `${img.offsetTop +
+					(parseInt(el.getAttribute("data-y")) * img.offsetHeight) / this.props.post.full[2]}px`;
+				el.style.left = `${img.offsetLeft +
+					(parseInt(el.getAttribute("data-x")) * img.offsetWidth) / this.props.post.full[1]}px`;
+
+				el.setAttribute(
+					"data-align",
+					parseInt(el.getAttribute("data-x")) / this.props.post.full[1] <= 0.5 ? "left" : "right"
+				);
+			});
+		}
+	};
 
 	_resetPan = () => {
 		this.setState({ scale: 1, offsetX: 0, offsetY: 0, mouseDown: false });
@@ -81,6 +113,17 @@ class Image extends React.Component {
 							this.state.offsetY
 						}px)`
 					}}>
+					{(this.props.post.notes || []).map((n) => (
+						<div
+							className={styles.note}
+							key={`${n.x}.${n.y}`}
+							data-w={n.w}
+							data-h={n.h}
+							data-x={n.x}
+							data-y={n.y}>
+							<div className={styles.noteBody}>{n.b.replace(/<(.|\n)*?>/g, '')}</div>
+						</div>
+					))}
 					<img
 						src={this.props.post.full[0]}
 						alt=""
@@ -93,6 +136,7 @@ class Image extends React.Component {
 						}}
 						onLoad={() => {
 							this.setState({ imageLoaded: true });
+							this._updateNotes();
 						}}
 						onError={() => {
 							this.setState({ loadFailed: true });

@@ -32,7 +32,9 @@ module.exports = async (req, res, site) => {
 			posts.push({
 				_: {
 					needsTags: true,
-					needsInfo: false
+					needsInfo: false,
+
+					hasNotes: post.last_noted_at !== null
 				},
 				id: post.id,
 				tags: [

@@ -20,7 +20,9 @@ module.exports = async (req, res, site) => {
 		posts.push({
 			_: {
 				needsTags: false,
-				needsInfo: false
+				needsInfo: false,
+
+				hasNotes: post.has_notes
 			},
 			id: post.id,
 			tags: post.tags.map((t) => [t.name, t.count, t.type]),

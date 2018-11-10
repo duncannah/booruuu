@@ -59,6 +59,18 @@ function* fetchPostInfo(payload) {
 	}
 }
 
+function* fetchPostNotes(payload) {
+	try {
+		let site = yield select((state) => state.site.currentSite);
+
+		const body = yield API.request(`sites/${site}/note/list?id=${payload}`);
+
+		yield put(postActions.setPostInfo({ notes: body.notes }));
+	} catch (e) {
+		yield put(appActions.notify(`Couldn't fetch notes`, e));
+	}
+}
+
 function* postViewOn({ payload }) {
 	let info = yield select((state) => state.post.posts.find((p) => p.id === payload));
 	info.tags = info.tags ? info.tags.sort() : [];
@@ -66,6 +78,8 @@ function* postViewOn({ payload }) {
 
 	if (info._.needsInfo) yield fork(fetchPostInfo, payload);
 	else if (info._.needsTags) yield fork(fetchPostTags, payload);
+
+	if (info._.hasNotes && !(info.notes || []).length) yield fork(fetchPostNotes, payload);
 }
 
 function* siteChanged() {

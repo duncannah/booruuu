@@ -8,11 +8,11 @@ module.exports = {
 		engine: "gelbooru_old",
 
 		tagTypes: {
-			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 1 },
-			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 2 },
-			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 0 },
-			metadata: { color: "rgba(255, 252, 133, .6)", id: 5, order: 4 },
-			general: { color: "", id: 0, order: 3 }
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3 },
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
+			general: { color: "", id: 0 },
+			metadata: { color: "rgba(255, 252, 133, .6)", id: 5 }
 		}
 	},
 
@@ -25,11 +25,11 @@ module.exports = {
 		engine: "ouroboros",
 
 		tagTypes: {
-			artist: { color: "rgba(255, 252, 133, .6)", id: 1, order: 0 },
-			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 1 },
-			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 2 },
-			species: { color: "rgba(255, 160, 133, .6)", id: 5, order: 3 },
-			general: { color: "", id: 0, order: 4 }
+			artist: { color: "rgba(255, 252, 133, .6)", id: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3 },
+			species: { color: "rgba(255, 160, 133, .6)", id: 5 },
+			general: { color: "", id: 0 }
 		}
 	},
 
@@ -42,11 +42,11 @@ module.exports = {
 		engine: "ouroboros",
 
 		tagTypes: {
-			artist: { color: "rgba(255, 252, 133, .6)", id: 1, order: 0 },
-			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 1 },
-			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 2 },
-			species: { color: "rgba(255, 160, 133, .6)", id: 5, order: 3 },
-			general: { color: "", id: 0, order: 4 }
+			artist: { color: "rgba(255, 252, 133, .6)", id: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3 },
+			species: { color: "rgba(255, 160, 133, .6)", id: 5 },
+			general: { color: "", id: 0 }
 		}
 	},
 
@@ -59,11 +59,11 @@ module.exports = {
 		engine: "danbooru",
 
 		tagTypes: {
-			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 1 },
-			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 2 },
-			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 0 },
-			meta: { color: "rgba(255, 252, 133, .6)", id: 5, order: 4 },
-			general: { color: "", id: 0, order: 3 }
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3 },
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
+			general: { color: "", id: 0 },
+			meta: { color: "rgba(255, 252, 133, .6)", id: 5 }
 		}
 	},
 
@@ -76,11 +76,11 @@ module.exports = {
 		engine: "gelbooru_new",
 
 		tagTypes: {
-			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 1 },
-			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 2 },
-			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 0 },
-			metadata: { color: "rgba(255, 252, 133, .6)", id: 5, order: 4 },
-			general: { color: "", id: 0, order: 3 }
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3 },
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
+			general: { color: "", id: 0 },
+			metadata: { color: "rgba(255, 252, 133, .6)", id: 5 }
 		}
 	},
 
@@ -93,13 +93,13 @@ module.exports = {
 		engine: "sankaku",
 
 		tagTypes: {
-			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 3 },
-			studio: { color: "rgba(255, 133, 226, .6)", id: 2, order: 1 },
-			character: { color: "rgba(133, 255, 133, .6)", id: 4, order: 2 },
-			copyright: { color: "rgba(160, 84, 160, .6)", id: 3, order: 0 },
-			medium: { color: "rgba(133, 210, 255, .6)", id: 8, order: 4 },
-			meta: { color: "rgba(177, 133, 255, .6)", id: 9, order: 6 },
-			general: { color: "", id: 0, order: 5 }
+			copyright: { color: "rgba(160, 84, 160, .6)", id: 3 },
+			studio: { color: "rgba(255, 133, 226, .6)", id: 2 },
+			character: { color: "rgba(133, 255, 133, .6)", id: 4 },
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1 },
+			medium: { color: "rgba(133, 210, 255, .6)", id: 8 },
+			general: { color: "", id: 0 },
+			meta: { color: "rgba(177, 133, 255, .6)", id: 9 }
 		}
 	}
 };

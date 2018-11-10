@@ -25,7 +25,9 @@ module.exports = async (req, res, site) => {
 		posts.push({
 			_: {
 				needsTags: true,
-				needsInfo: false
+				needsInfo: false,
+
+				hasNotes: post.has_notes
 			},
 			id: post.id,
 			tags: tags,
