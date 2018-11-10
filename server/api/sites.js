@@ -1,4 +1,21 @@
 module.exports = {
+	safebooru: {
+		name: "safebooru.org",
+		url: "https://safebooru.org",
+
+		nsfw: false,
+
+		engine: "gelbooru_old",
+
+		tagTypes: {
+			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 1 },
+			character: { color: "rgba(143, 255, 133, .6)", id: 4, order: 2 },
+			copyright: { color: "rgba(238, 133, 255, .6)", id: 3, order: 0 },
+			metadata: { color: "rgba(255, 252, 133, .6)", id: 5, order: 4 },
+			general: { color: "", id: 0, order: 3 }
+		}
+	},
+
 	e926: {
 		name: "e926.net",
 		url: "https://e926.net",
@@ -56,7 +73,7 @@ module.exports = {
 
 		nsfw: true,
 
-		engine: "gelbooru",
+		engine: "gelbooru_new",
 
 		tagTypes: {
 			artist: { color: "rgba(255, 133, 133, .6)", id: 1, order: 1 },

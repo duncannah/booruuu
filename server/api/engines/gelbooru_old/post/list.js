@@ -25,24 +25,24 @@ module.exports = async (req, res, site) => {
 			fav: -1,
 			time: new Date(post.created_at).getTime(),
 			author: post.owner,
-			sources: [post.source],
+			sources: [],
 			fileSize: 0,
 			kind: post.image.substr(post.image.lastIndexOf(".") + 1),
 			md5: post.md5,
-			rating: { s: 0, q: 1, e: 2 }[post.rating],
+			rating: site.nsfw ? { s: 0, q: 1, e: 2 }[post.rating] : 0,
 
-			thumb: [`https://gelbooru.com/thumbnails/${post.directory}/thumbnail_${post.hash}.jpg`, p_w, p_h],
+			thumb: [`${site.url}/thumbnails/${post.directory}/thumbnail_${post.image}`, p_w, p_h],
 
 			sample: [
 				post.sample
-					? `https://gelbooru.com/samples/${post.directory}/sample_${post.image}`
-					: `https://gelbooru.com/thumbnails/${post.directory}/thumbnail_${post.hash}.jpg`,
+					? `${site.url}/samples/${post.directory}/sample_${post.image}`
+					: `${site.url}/thumbnails/${post.directory}/thumbnail_${post.image}`,
 
 				post.sample_width,
 				post.sample_height
 			],
 
-			full: [post.file_url, post.width, post.height]
+			full: [`${site.url}/images/${post.directory}/${post.image}`, post.width, post.height]
 		});
 	}
 
