@@ -60,14 +60,12 @@ function* fetchPostInfo(payload) {
 }
 
 function* postViewOn({ payload }) {
-	let engine = yield select((state) => state.site.engines[state.site.sites[state.site.currentSite].engine]);
-
 	let info = yield select((state) => state.post.posts.find((p) => p.id === payload));
 	info.tags = info.tags ? info.tags.sort() : [];
 	yield put(postActions.setPostInfo(info));
 
-	if (engine.seperateInfoReq) yield fork(fetchPostInfo, payload);
-	else if (engine.seperateTagReq) yield fork(fetchPostTags, payload);
+	if (info._.needsInfo) yield fork(fetchPostInfo, payload);
+	else if (info._.needsTags) yield fork(fetchPostTags, payload);
 }
 
 function* siteChanged() {

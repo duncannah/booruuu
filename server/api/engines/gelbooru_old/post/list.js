@@ -18,6 +18,10 @@ module.exports = async (req, res, site) => {
 		else if (post.width < post.height) p_w = 150 * (post.width / post.height);
 
 		posts.push({
+			_: {
+				needsTags: true,
+				needsInfo: false
+			},
 			id: post.id,
 			tags: [...post.tags.split(" ").map((t) => [t, -1, 0])],
 			description: "",

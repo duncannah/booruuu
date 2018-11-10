@@ -5,13 +5,7 @@ const sites = require("./sites");
 const engines = require("./engines");
 
 router.get("/sites", (req, res) => {
-	const engineInfos = {};
-
-	Object.keys(engines).forEach((name) => {
-		engineInfos[name] = engines[name].engineInfo;
-	});
-
-	res.json({ sites: sites, engines: engineInfos });
+	res.json({ sites: sites });
 });
 
 router.get("/sites/:site/:controller/:action", async (req, res) => {

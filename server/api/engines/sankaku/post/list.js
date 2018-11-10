@@ -18,6 +18,10 @@ module.exports = async (req, res, site) => {
 		else if (post.width < post.height) p_w = 150 * (post.width / post.height);
 
 		posts.push({
+			_: {
+				needsTags: false,
+				needsInfo: false
+			},
 			id: post.id,
 			tags: post.tags.map((t) => [t.name, t.count, t.type]),
 			description: "",
@@ -40,69 +44,4 @@ module.exports = async (req, res, site) => {
 	}
 
 	res.json({ posts: posts });
-
-	// old html scraping code
-	/*
-	let url = `${site.url}/?tags=${encodeURIComponent(req.query.q || "")}`;
-
-	const $ = await requestHTML(url);
-
-	let posts = [];
-
-	$(".thumb").each((i, el) => {
-		// TODO: replace "true" with "page === 1" when pages are implemented
-		if (true && i < 3) return;
-
-		let toPush = {
-			id: parseInt(
-				$(el)
-					.attr("id")
-					.substr(1)
-			),
-			tags: $(el)
-				.find("img")
-				.attr("title")
-				.match(/^(.*?) Rating:/)[1]
-				.split(" "),
-			score: parseInt(
-				$(el)
-					.find("img")
-					.attr("title")
-					.match(/Score:(.*?) /)[1]
-			),
-			fav: -1,
-			kind: "png",
-			rating: { Safe: 0, Questionable: 1, Explicit: 2 }[
-				$(el)
-					.find("img")
-					.attr("title")
-					.match(/Rating:(.*?) /)[1]
-			],
-			thumb: [
-				"https://" +
-					$(el)
-						.find("img")
-						.attr("src")
-						.substr(2),
-				parseInt(
-					$(el)
-						.find("img")
-						.attr("width")
-				),
-				parseInt(
-					$(el)
-						.find("img")
-						.attr("height")
-				)
-			]
-		};
-
-		if (toPush.tags.includes("video")) toPush.kind = "mp4";
-		else if (toPush.tags.includes("flash")) toPush.kind = "swf";
-
-		posts.push(toPush);
-	});
-
-	res.json({ posts: posts });
-	*/
 };

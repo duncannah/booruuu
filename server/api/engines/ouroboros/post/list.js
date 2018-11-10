@@ -23,6 +23,10 @@ module.exports = async (req, res, site) => {
 		});
 
 		posts.push({
+			_: {
+				needsTags: true,
+				needsInfo: false
+			},
 			id: post.id,
 			tags: tags,
 			description: post.description,

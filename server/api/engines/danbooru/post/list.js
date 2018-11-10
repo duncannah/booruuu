@@ -30,6 +30,10 @@ module.exports = async (req, res, site) => {
 			!post.tag_string.includes("toddlercon")
 		)
 			posts.push({
+				_: {
+					needsTags: true,
+					needsInfo: false
+				},
 				id: post.id,
 				tags: [
 					...post.tag_string_general.split(" ").map((tag) => [tag, -1, 0]),
