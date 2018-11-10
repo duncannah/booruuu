@@ -18,6 +18,7 @@ I'll attempt to have a production version working as much as possible: https://e
 
 # Currently supported websites
 
+-   Safebooru
 -   e926
 -   e621 🔞
 -   Danbooru 🔞
