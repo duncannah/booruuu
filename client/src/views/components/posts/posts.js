@@ -12,9 +12,9 @@ class Post extends React.Component {
 		const { id, thumb, score, fav, rating } = this.props;
 
 		return (
-			<div className={styles.post}>
+			<div className={classNames({ [styles.post]: true, [styles.flash]: thumb[0] === "flash" })}>
 				<div className={styles.inner} onClick={() => this.props.onClick(id)}>
-					<img src={thumb[0]} alt="" width={thumb[1]} height={thumb[2]} />
+					<img src={thumb[0] !== "flash" ? thumb[0] : ""} alt="" width={thumb[1]} height={thumb[2]} />
 					<div className={styles.info}>
 						<span
 							className={classNames({

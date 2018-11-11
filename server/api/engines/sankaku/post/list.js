@@ -1,4 +1,5 @@
 const { requestJSON } = require("../../../request");
+const { IMG_FLASH } = require("../../../constants");
 
 module.exports = async (req, res, site) => {
 	// TODO: pages
@@ -17,6 +18,10 @@ module.exports = async (req, res, site) => {
 		if (post.width > post.height) p_h = 150 / (post.width / post.height);
 		else if (post.width < post.height) p_w = 150 * (post.width / post.height);
 
+		const kind = post.file_type
+			? post.file_type.substr(post.file_type.lastIndexOf("/") + 1)
+			: post.file_url.substr(0, post.file_url.indexOf("?")).substr(post.file_url.lastIndexOf(".") + 1);
+
 		posts.push({
 			_: {
 				needsTags: false,
@@ -33,13 +38,13 @@ module.exports = async (req, res, site) => {
 			author: post.author.name,
 			sources: [post.source],
 			fileSize: post.file_size,
-			kind: post.file_type.substr(post.file_type.lastIndexOf("/") + 1),
+			kind: kind,
 			md5: post.md5,
 			rating: { s: 0, q: 1, e: 2 }[post.rating],
 
-			thumb: [post.preview_url, p_w, p_h],
+			thumb: [kind !== "swf" ? post.preview_url : IMG_FLASH, p_w, p_h],
 
-			sample: [post.sample_url, post.sample_width, post.sample_height],
+			sample: [kind !== "swf" ? post.sample_url : IMG_FLASH, post.sample_width, post.sample_height],
 
 			full: [post.file_url, post.width, post.height]
 		});

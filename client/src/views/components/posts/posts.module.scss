@@ -121,5 +121,36 @@
 
 			opacity: 0;
 		}
+
+		&.flash {
+			img {
+				display: none;
+			}
+
+			.inner {
+				width: 150px;
+				height: 150px;
+				padding-top: 150px;
+
+				background: var(--color-sidebar);
+
+				&:before {
+					font-size: 150%;
+					font-style: italic;
+					line-height: 1;
+
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 17px;
+					left: 0;
+
+					height: 1em;
+					margin: auto;
+
+					content: 'flash file';
+				}
+			}
+		}
 	}
 }
