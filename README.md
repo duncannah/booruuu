@@ -1,20 +1,20 @@
 # booruuu - a browser-based imageboard browser
 
-## Warning: This project is a personal project, and is not aimed for general use, although this may change in the future.
+## Warning: This project is merely a way for me to learn React, not meant to be a tool used by other people.
 
-This is an imageboard (booru) browser that runs on the browser. Eliminates annoyances that are frequent when using imageboards, such as advertisements, ugly interfaces, intentional throttling, etc...
+This is an imageboard (booru) browser that runs on the browser that eliminates annoyances that are frequent when using imageboards, such as advertisements, ugly interfaces, intentional throttling, etc...
 
-This is personal project mainly aimed for learning React, but it is possible that it becomes a general-purpose tool if there's enough interest.
-
-This is still in alpha stage, so bugs are pretty common; always except things to not work.
+This is still in alpha stage, so bugs are pretty common; most things will just not work.
 
 ![Screenshot](doc/screenshot.png)
 
-I have beginner-level knowledge in development, thus the code might not be on par with what you might be used to. English is not my mother tongue, so you might also encounter some mistakes in typing.
+I have beginner-level knowledge in development, so the software is lower-quality than average. English is not my mother tongue, so the documentation & UI text is also lower-quality.
 
-# Ready to go
+# Online demo
 
-I'll attempt to have a production version working as much as possible: https://erman.rocks/services/booruuu/ (should update every commit)
+Here's an online demo that might or might not work: https://erman.rocks/services/booruuu/
+
+I'm relying on a simple crontab script to keep this updated; so it might break sometimes.
 
 # Currently supported websites
 
@@ -27,22 +27,26 @@ I'll attempt to have a production version working as much as possible: https://e
 
 # How to run
 
+## Please do remember that this is a personal project in alpha. Don't waste your time
+
 Make sure you ran `npm install` on both the main component and the `client` component to get the dependencies.
-You also need nodemon: `sudo npm install -g nodemon`
+You also need nodemon: `sudo npm install -g nodemon`.
 
-For general development (runs both API server and client server): `npm run dev`
+For general development (runs both API server and client server): `npm run dev`.
 
-Run API server only: `PORT=5000 npm run server`
+Run API server only: `PORT=5000 npm run server`.
 
-To compile client (to be served by a web server): `cd client; PUBLIC_URL=./ npm run build`
+To compile client (to be served by a web server): `cd client; PUBLIC_URL=./ npm run build`.
+
+Setting `PUBLIC_URL` as `./` should be fine, since we're not using any routers.
 
 # Using it with NGINX
 
-In a production environment, it is a good idea to serve the client files through an actual web server like Nginx. But sometimes, there are cases where you can't expose an additional port (firewalls, reverse proxies, etc), so what you can do instead is a reverse proxy from Nginx to the API server.
+In a production environment, it is a good idea to serve the client files through an actual web server like NGINX. But sometimes, there are cases where you can't expose an additional port (firewalls, reverse proxies, etc), so what you can do instead is a reverse proxy from NGINX to the API server.
 
 The client makes requests to `./api/` by default, so you can set up the reverse proxy there.
 
-Here's an example Nginx configuration. Let's say the client is served at `/booru`, and the API server is at `localhost:5000`:
+Here's an example NGINX configuration. Let's say the client is served at `/booru`, and the API server is at `localhost:5000`:
 
 ```
 location /booru/api/ {
