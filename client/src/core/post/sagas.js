@@ -43,11 +43,13 @@ function* fetchPosts(wipe = false) {
 
 function* fetchPostTags(payload) {
 	try {
-		let site = yield select((state) => state.site.currentSite);
+		const site = yield select((state) => state.site.currentSite);
 
 		const body = yield API.request(`sites/${site}/post/tags?id=${payload}`);
 
-		yield put(postActions.setPostInfo({ id: payload, tags: body.tags.sort() }));
+		const info = yield select((state) => state.post.posts.find((p) => p.id === payload));
+
+		yield put(postActions.setPostInfo({ id: payload, tags: body.tags.sort(), _: { ...info._, needsTags: false } }));
 	} catch (e) {
 		yield put(appActions.notify(`Couldn't fetch tags`, e));
 	}
@@ -55,11 +57,13 @@ function* fetchPostTags(payload) {
 
 function* fetchPostInfo(payload) {
 	try {
-		let site = yield select((state) => state.site.currentSite);
+		const site = yield select((state) => state.site.currentSite);
 
 		const body = yield API.request(`sites/${site}/post/info?id=${payload}`);
 
-		yield put(postActions.setPostInfo(body.info));
+		const info = yield select((state) => state.post.posts.find((p) => p.id === payload));
+
+		yield put(postActions.setPostInfo({ ...body.info, _: { ...info._, needsInfo: false, needsTags: false } }));
 	} catch (e) {
 		yield put(appActions.notify(`Couldn't fetch info`, e));
 	}
@@ -67,25 +71,27 @@ function* fetchPostInfo(payload) {
 
 function* fetchPostNotes(payload) {
 	try {
-		let site = yield select((state) => state.site.currentSite);
+		const site = yield select((state) => state.site.currentSite);
 
 		const body = yield API.request(`sites/${site}/note/list?id=${payload}`);
 
-		yield put(postActions.setPostInfo({ id: payload, notes: body.notes }));
+		const info = yield select((state) => state.post.posts.find((p) => p.id === payload));
+
+		yield put(postActions.setPostInfo({ id: payload, notes: body.notes, _: { ...info._, needsNotes: false } }));
 	} catch (e) {
 		yield put(appActions.notify(`Couldn't fetch notes`, e));
 	}
 }
 
 function* postViewOn({ payload }) {
-	let info = yield select((state) => state.post.posts[payload]);
+	const info = yield select((state) => state.post.posts[payload]);
 	//info.tags = info.tags ? info.tags.sort() : [];
 	//yield put(postActions.setPostInfo(info));
 
 	if (info._.needsInfo) yield fork(fetchPostInfo, info.id);
 	else if (info._.needsTags) yield fork(fetchPostTags, info.id);
 
-	if (info._.hasNotes && !(info.notes || []).length) yield fork(fetchPostNotes, info.id);
+	if (info._.needsNotes) yield fork(fetchPostNotes, info.id);
 }
 
 function* siteChanged() {

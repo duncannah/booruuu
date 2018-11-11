@@ -14,7 +14,7 @@ const PLACEHOLDER = {
 		needsTags: false,
 		needsInfo: false,
 
-		hasNotes: false
+		needsNotes: false
 	},
 
 	id: -1,

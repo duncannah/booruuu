@@ -27,7 +27,7 @@ module.exports = async (req, res, site) => {
 				needsTags: false,
 				needsInfo: false,
 
-				hasNotes: post.has_notes
+				needsNotes: post.has_notes
 			},
 			id: post.id,
 			tags: post.tags.map((t) => [t.name, t.count, t.type]),

@@ -22,7 +22,7 @@ module.exports = async (req, res, site) => {
 				needsTags: true,
 				needsInfo: false,
 
-				hasNotes: false
+				needsNotes: false
 			},
 			id: post.id,
 			tags: [...post.tags.split(" ").map((t) => [t, -1, 0])],
