@@ -27,7 +27,13 @@ function* fetchPosts(wipe = false) {
 
 		if (wipe) yield put(postActions.resetPosts());
 
-		yield put(postActions.addPosts(body.posts));
+		yield put(
+			postActions.addPosts(
+				body.posts.map((p) => {
+					return { ...p, tags: p.tags.sort() };
+				})
+			)
+		);
 	} catch (error) {
 		yield put(appActions.notify(`Couldn't fetch posts`, error));
 	}
