@@ -70,7 +70,9 @@ export function postReducer(state = initialState, action) {
 
 		case postActions.SET_POST_INFO:
 			let toReturn = {
-				...state
+				...state,
+
+				posts: [...state.posts]
 			};
 
 			const index = state.posts.findIndex((p) => p.id === action.payload.id);

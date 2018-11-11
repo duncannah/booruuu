@@ -48,8 +48,6 @@ class PostTags extends React.Component {
 				? this.props.posts[this.props.post.post]
 				: { tags: [] };
 
-		console.log("up");
-
 		return (
 			<div className={styles.tags}>
 				{this.props.currentSite
