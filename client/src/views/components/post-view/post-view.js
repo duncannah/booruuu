@@ -237,7 +237,7 @@ class PostView extends React.Component {
 					key={"side_" + this.props.postView.post}
 				/>
 
-				{["mp4", "webm", "swf"].includes(this.props.postView.post.kind) ? (
+				{["mp4", "webm", "swf"].includes(post.kind) ? (
 					<Interactive post={post} key={"img_" + this.props.postView.post} on={this.props.postView.on} />
 				) : (
 					<Image post={post} key={"img_" + this.props.postView.post} />
