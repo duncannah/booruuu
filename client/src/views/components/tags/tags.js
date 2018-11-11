@@ -30,7 +30,7 @@ class PopularTags extends React.Component {
 								-
 							</div>
 						</div>
-						<div onClick={this.props.searchTag}>
+						<div onClick={this.props.searchTag} className={tag[0].length > 23 ? styles._long : ""}>
 							{tag[0].replace(/_/g, " ")}
 							<div className={styles.count}>{tag[1] > 0 ? tag[1] : ""}</div>
 						</div>
@@ -57,7 +57,9 @@ class PostTags extends React.Component {
 											<div className={styles.actions}>
 												<div className={styles.info}>?</div>
 											</div>
-											<div onClick={this.props.searchTag}>
+											<div
+												onClick={this.props.searchTag}
+												className={tag[0].length > 23 ? styles._long : ""}>
 												{tag[0].replace(/_/g, " ")}
 												<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
 											</div>

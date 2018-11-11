@@ -23,6 +23,12 @@
 		-webkit-appearance: menulist-button;
 	}
 
+	.current {
+		&._long {
+			letter-spacing: -1px;
+		}
+	}
+
 	.arrow {
 		position: absolute;
 		right: 3px;

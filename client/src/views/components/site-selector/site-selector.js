@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import classNames from "classnames";
 
 import { siteActions } from "../../../core/site";
 
@@ -11,6 +12,8 @@ class SiteSelector extends React.Component {
 	};
 
 	render() {
+		const name = this.props.currentSite ? this.props.sites[this.props.currentSite].name : "\u00A0";
+
 		return (
 			<div className={styles.siteSelector}>
 				<select className={styles.select} onChange={this._select} value={this.props.currentSite}>
@@ -25,8 +28,8 @@ class SiteSelector extends React.Component {
 						});
 					})()}
 				</select>
-				<span className={styles.current}>
-					{this.props.currentSite ? this.props.sites[this.props.currentSite].name : "\u00A0"}
+				<span className={classNames({ [styles.current]: true, [styles._long]: name.length >= 23 })}>
+					{name}
 				</span>
 				<span className={styles.arrow} />
 			</div>
