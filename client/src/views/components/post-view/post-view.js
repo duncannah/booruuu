@@ -121,7 +121,7 @@ class Image extends React.Component {
 							data-h={n.h}
 							data-x={n.x}
 							data-y={n.y}>
-							<div className={styles.noteBody}>{n.b.replace(/<(.|\n)*?>/g, '')}</div>
+							<div className={styles.noteBody}>{n.b.replace(/<(.|\n)*?>/g, "")}</div>
 						</div>
 					))}
 					<img
@@ -182,9 +182,18 @@ class Interactive extends React.Component {
 class PostView extends React.Component {
 	componentDidMount() {
 		document.addEventListener("keyup", (e) => {
-			if (e.key === "Escape" && this.props.in) {
-				(document.querySelector("video") || { pause: () => {} }).pause();
-				this.props.stopViewingPost();
+			if (this.props.in) {
+				if (e.key === "Escape") {
+					(document.querySelector("video") || { pause: () => {} }).pause();
+					this.props.stopViewingPost();
+				} else if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+					const index = this.props.posts.findIndex((p) => p.id === this.props.postView.post.id);
+
+					if (e.key === "ArrowLeft" && index !== 0)
+						this.props.startViewingPost(this.props.posts[index - 1].id);
+					else if (e.key === "ArrowRight" && index < this.props.posts.length)
+						this.props.startViewingPost(this.props.posts[index + 1].id);
+				}
 			}
 		});
 	}
@@ -216,11 +225,13 @@ class PostView extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
+		posts: state.post.posts,
 		postView: state.post.postView
 	};
 };
 
 const mapDispatchToProps = {
+	startViewingPost: postActions.startViewingPost,
 	stopViewingPost: postActions.stopViewingPost
 };
 
