@@ -9,6 +9,33 @@ import Sidebar from "../sidebar";
 
 import styles from "./post-view.module.scss";
 
+const PLACEHOLDER = {
+	_: {
+		needsTags: false,
+		needsInfo: false,
+
+		hasNotes: false
+	},
+
+	id: -1,
+	tags: [],
+	description: "",
+	score: 0,
+	fav: 0,
+	time: 0,
+	author: "Anonymous",
+	sources: [],
+	fileSize: 0,
+	md5: "",
+	rating: 0,
+
+	thumb: ["data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", 1, 1],
+
+	sample: ["data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", 1, 1],
+
+	full: ["data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==", 1, 1]
+};
+
 class Image extends React.Component {
 	constructor(props) {
 		super(props);
@@ -187,34 +214,33 @@ class PostView extends React.Component {
 					(document.querySelector("video") || { pause: () => {} }).pause();
 					this.props.stopViewingPost();
 				} else if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-					const index = this.props.posts.findIndex((p) => p.id === this.props.postView.post.id);
-
-					if (e.key === "ArrowLeft" && index !== 0)
-						this.props.startViewingPost(this.props.posts[index - 1].id);
-					else if (e.key === "ArrowRight" && index < this.props.posts.length)
-						this.props.startViewingPost(this.props.posts[index + 1].id);
+					if (e.key === "ArrowLeft" && this.props.postView.post !== 0)
+						this.props.startViewingPost(this.props.postView.post - 1);
+					else if (e.key === "ArrowRight" && this.props.postView.post < this.props.posts.length)
+						this.props.startViewingPost(this.props.postView.post + 1);
 				}
 			}
 		});
 	}
 
 	render() {
+		const post =
+			this.props.postView.post !== -1 && this.props.posts.hasOwnProperty(this.props.postView.post)
+				? this.props.posts[this.props.postView.post]
+				: PLACEHOLDER;
+
 		return (
 			<div className={classNames({ [styles.postView]: true, [styles.on]: this.props.postView.on })}>
 				<Sidebar
 					openSettingsPopup={this.props.openSettingsPopup}
 					postView
-					key={"side_" + this.props.postView.post.id}
+					key={"side_" + this.props.postView.post}
 				/>
 
 				{["mp4", "webm", "swf"].includes(this.props.postView.post.kind) ? (
-					<Interactive
-						post={this.props.postView.post}
-						key={"img_" + this.props.postView.post.id}
-						on={this.props.postView.on}
-					/>
+					<Interactive post={post} key={"img_" + this.props.postView.post} on={this.props.postView.on} />
 				) : (
-					<Image post={this.props.postView.post} key={"img_" + this.props.postView.post.id} />
+					<Image post={post} key={"img_" + this.props.postView.post} />
 				)}
 			</div>
 		);

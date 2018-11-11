@@ -9,11 +9,11 @@ import styles from "./posts.module.scss";
 
 class Post extends React.Component {
 	render() {
-		const { id, thumb, score, fav, rating } = this.props;
+		const { index, thumb, score, fav, rating } = this.props;
 
 		return (
 			<div className={classNames({ [styles.post]: true, [styles.flash]: thumb[0] === "flash" })}>
-				<div className={styles.inner} onClick={() => this.props.onClick(id)}>
+				<div className={styles.inner} onClick={() => this.props.onClick(index)}>
 					<img src={thumb[0] !== "flash" ? thumb[0] : ""} alt="" width={thumb[1]} height={thumb[2]} />
 					<div className={styles.info}>
 						<span
@@ -49,8 +49,8 @@ class Post extends React.Component {
 }
 
 class Posts extends React.Component {
-	_onClick = (id) => {
-		this.props.startViewingPost(id);
+	_onClick = (i) => {
+		this.props.startViewingPost(i);
 	};
 
 	render() {

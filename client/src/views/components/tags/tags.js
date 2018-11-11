@@ -43,13 +43,20 @@ class PopularTags extends React.Component {
 
 class PostTags extends React.Component {
 	render() {
+		const post =
+			this.props.post.post !== -1 && this.props.posts.hasOwnProperty(this.props.post.post)
+				? this.props.posts[this.props.post.post]
+				: { tags: [] };
+
+		console.log("up");
+
 		return (
 			<div className={styles.tags}>
 				{this.props.currentSite
 					? Object.keys(this.props.sites[this.props.currentSite].tagTypes).map((name) => {
 							const type = this.props.sites[this.props.currentSite].tagTypes[name];
 
-							const tags = this.props.post.post.tags.map((tag) => {
+							const tags = post.tags.map((tag) => {
 								if (tag[2] !== type.id) return [];
 								else
 									return (
@@ -134,6 +141,7 @@ const mapStateToProps = (state) => {
 		popularTags: state.site.popularTags,
 		sites: state.site.sites,
 		currentSite: state.site.currentSite,
+		posts: state.post.posts,
 		post: state.post.postView,
 		queryBuffer: state.post.search.queryBuffer,
 		query: state.post.search.query

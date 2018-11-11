@@ -41,7 +41,7 @@ function* fetchPostTags(payload) {
 
 		const body = yield API.request(`sites/${site}/post/tags?id=${payload}`);
 
-		yield put(postActions.setPostInfo({ tags: body.tags.sort() }));
+		yield put(postActions.setPostInfo({ id: payload, tags: body.tags.sort() }));
 	} catch (e) {
 		yield put(appActions.notify(`Couldn't fetch tags`, e));
 	}
@@ -65,21 +65,21 @@ function* fetchPostNotes(payload) {
 
 		const body = yield API.request(`sites/${site}/note/list?id=${payload}`);
 
-		yield put(postActions.setPostInfo({ notes: body.notes }));
+		yield put(postActions.setPostInfo({ id: payload, notes: body.notes }));
 	} catch (e) {
 		yield put(appActions.notify(`Couldn't fetch notes`, e));
 	}
 }
 
 function* postViewOn({ payload }) {
-	let info = yield select((state) => state.post.posts.find((p) => p.id === payload));
-	info.tags = info.tags ? info.tags.sort() : [];
-	yield put(postActions.setPostInfo(info));
+	let info = yield select((state) => state.post.posts[payload]);
+	//info.tags = info.tags ? info.tags.sort() : [];
+	//yield put(postActions.setPostInfo(info));
 
-	if (info._.needsInfo) yield fork(fetchPostInfo, payload);
-	else if (info._.needsTags) yield fork(fetchPostTags, payload);
+	if (info._.needsInfo) yield fork(fetchPostInfo, info.id);
+	else if (info._.needsTags) yield fork(fetchPostTags, info.id);
 
-	if (info._.hasNotes && !(info.notes || []).length) yield fork(fetchPostNotes, payload);
+	if (info._.hasNotes && !(info.notes || []).length) yield fork(fetchPostNotes, info.id);
 }
 
 function* siteChanged() {
