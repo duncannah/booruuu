@@ -12,7 +12,7 @@ I have beginner-level knowledge in development, so the software is lower-quality
 
 # Online demo
 
-Here's an online demo that might or might not work: https://erman.rocks/services/booruuu/
+Here's an online demo that might or might not work: https://ermansay.in/services/booruuu/
 
 I'm relying on a simple crontab script to keep this updated; so it might break sometimes.
 
