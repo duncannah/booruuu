@@ -32,7 +32,11 @@ module.exports = {
 				decodeURIComponent(
 					$(el)
 						.attr("href")
-						.substr(17)
+						.substr(
+							$(el)
+								.attr("href")
+								.indexOf("=") + 1
+						)
 				),
 
 				parseInt(
