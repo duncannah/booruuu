@@ -34,7 +34,7 @@ You also need nodemon: `sudo npm install -g nodemon`.
 
 For general development (runs both API server and client server): `npm run dev`.
 
-Run API server only: `PORT=5000 npm run server`.
+Run API server only: `PORT=5000 npm run start`.
 
 To compile client (to be served by a web server): `cd client; PUBLIC_URL=./ npm run build`.
 
