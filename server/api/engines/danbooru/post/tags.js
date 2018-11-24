@@ -1,43 +1,47 @@
 const { requestHTML } = require("../../../request");
 
-module.exports = async (req, res, site) => {
-	if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
+module.exports = {
+	preferredMethod: "html",
 
-	let url = `${site.url}/posts/${parseInt(req.query.id)}`;
+	html: async (req, res, site) => {
+		if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
 
-	const $ = await requestHTML(url);
+		let url = `${site.url}/posts/${parseInt(req.query.id)}`;
 
-	let tags = [];
+		const $ = await requestHTML(url);
 
-	$("#tag-list ul li a.search-tag").each((i, el) => {
-		tags.push([
-			decodeURIComponent(
+		let tags = [];
+
+		$("#tag-list ul li a.search-tag").each((i, el) => {
+			tags.push([
+				decodeURIComponent(
+					$(el)
+						.attr("href")
+						.replace("/posts?tags=", "")
+				),
 				$(el)
-					.attr("href")
-					.replace("/posts?tags=", "")
-			),
-			$(el)
-				.next()
-				.text()
-				.endsWith("k")
-				? parseInt(
-						$(el)
-							.next()
-							.text()
-							.replace("k", "") * 1000
-				  )
-				: parseInt(
-						$(el)
-							.next()
-							.text()
-				  ) || -1,
-			parseInt(
-				$(el.parent)
-					.attr("class")
-					.substr(-1)
-			)
-		]);
-	});
+					.next()
+					.text()
+					.endsWith("k")
+					? parseInt(
+							$(el)
+								.next()
+								.text()
+								.replace("k", "") * 1000
+					  )
+					: parseInt(
+							$(el)
+								.next()
+								.text()
+					  ) || -1,
+				parseInt(
+					$(el.parent)
+						.attr("class")
+						.substr(-1)
+				)
+			]);
+		});
 
-	res.json({ tags: tags });
+		res.json({ tags: tags });
+	}
 };
