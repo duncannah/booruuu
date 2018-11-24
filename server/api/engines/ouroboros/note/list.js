@@ -1,22 +1,26 @@
 const { requestJSON } = require("../../../request");
 
-module.exports = async (req, res, site) => {
-	if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
+module.exports = {
+	preferredMethod: "json",
 
-	let url = `${site.url}/note/index.json?post_id=${parseInt(req.query.id)}`;
+	json: async (req, res, site) => {
+		if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
 
-	const json = await requestJSON(url);
+		let url = `${site.url}/note/index.json?post_id=${parseInt(req.query.id)}`;
 
-	let notes = [];
+		const json = await requestJSON(url);
 
-	for (const note of json)
-		notes.push({
-			x: note.x,
-			y: note.y,
-			w: note.width,
-			h: note.height,
-			b: note.body
-		});
+		let notes = [];
 
-	res.json({ notes: notes });
+		for (const note of json)
+			notes.push({
+				x: note.x,
+				y: note.y,
+				w: note.width,
+				h: note.height,
+				b: note.body
+			});
+
+		res.json({ notes: notes });
+	}
 };

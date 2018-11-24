@@ -1,40 +1,44 @@
 const { requestHTML } = require("../../../request");
 
-module.exports = async (req, res, site) => {
-	let url = `${site.url}/index.php?page=post&s=list${
-		req.query.hasOwnProperty("q") ? "&tags=" + encodeURIComponent(req.query.q) : ""
-	}`;
+module.exports = {
+	preferredMethod: "html",
 
-	const $ = await requestHTML(url);
+	html: async (req, res, site) => {
+		let url = `${site.url}/index.php?page=post&s=list${
+			req.query.hasOwnProperty("q") ? "&tags=" + encodeURIComponent(req.query.q) : ""
+		}`;
 
-	let tags = [];
+		const $ = await requestHTML(url);
 
-	$("#tag-list li[class^='tag-type-'] a:first-child").each((i, el) => {
-		tags.push([
-			decodeURIComponent(
-				$(el)
-					.attr("href")
-					.substr(34)
-			),
+		let tags = [];
 
-			parseInt(
-				$(el)
-					.next()
-					.next()
-					.next()
-					.next()
-					.text()
-			) || -1,
+		$("#tag-list li[class^='tag-type-'] a:first-child").each((i, el) => {
+			tags.push([
+				decodeURIComponent(
+					$(el)
+						.attr("href")
+						.substr(34)
+				),
 
-			(
-				site.tagTypes[
-					$(el.parent)
-						.attr("class")
-						.substr(9)
-				] || { id: -1 }
-			).id
-		]);
-	});
+				parseInt(
+					$(el)
+						.next()
+						.next()
+						.next()
+						.next()
+						.text()
+				) || -1,
 
-	res.json({ tags: tags });
+				(
+					site.tagTypes[
+						$(el.parent)
+							.attr("class")
+							.substr(9)
+					] || { id: -1 }
+				).id
+			]);
+		});
+
+		res.json({ tags: tags });
+	}
 };

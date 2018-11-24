@@ -1,15 +1,19 @@
 const { requestJSON } = require("../../../request");
 
-module.exports = async (req, res, site) => {
-	if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
+module.exports = {
+	preferredMethod: "json",
 
-	let url = `${site.url}/post/tags.json?id=${parseInt(req.query.id)}`;
+	json: async (req, res, site) => {
+		if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
 
-	const json = await requestJSON(url);
+		let url = `${site.url}/post/tags.json?id=${parseInt(req.query.id)}`;
 
-	let tags = [];
+		const json = await requestJSON(url);
 
-	for (const tag of json) tags.push([tag.name, tag.count, tag.type]);
+		let tags = [];
 
-	res.json({ tags: tags });
+		for (const tag of json) tags.push([tag.name, tag.count, tag.type]);
+
+		res.json({ tags: tags });
+	}
 };

@@ -1,22 +1,26 @@
 const { requestJSON } = require("../../../request");
 
-module.exports = async (req, res, site) => {
-	if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
+module.exports = {
+	preferredMethod: "json",
 
-	let url = `https://capi-v2.sankakucomplex.com/posts/${parseInt(req.query.id)}/notes`;
+	json: async (req, res, site) => {
+		if (parseInt(req.query.id) === NaN || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
 
-	const json = await requestJSON(url);
+		let url = `https://capi-v2.sankakucomplex.com/posts/${parseInt(req.query.id)}/notes`;
 
-	let notes = [];
+		const json = await requestJSON(url);
 
-	for (const note of json)
-		notes.push({
-			x: note.x,
-			y: note.y,
-			w: note.width,
-			h: note.height,
-			b: note.body
-		});
+		let notes = [];
 
-	res.json({ notes: notes });
+		for (const note of json)
+			notes.push({
+				x: note.x,
+				y: note.y,
+				w: note.width,
+				h: note.height,
+				b: note.body
+			});
+
+		res.json({ notes: notes });
+	}
 };

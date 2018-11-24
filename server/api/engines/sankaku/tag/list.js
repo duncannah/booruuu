@@ -1,73 +1,77 @@
 const { requestHTML } = require("../../../request");
 
-module.exports = async (req, res, site) => {
-	let url = `${site.url}/tag/index?order=count`;
+module.exports = {
+	preferredMethod: "html",
 
-	if (req.query.q) url = `${site.url}/?tags=${encodeURIComponent(req.query.q)}&commit=Search`;
+	html: async (req, res, site) => {
+		let url = `${site.url}/tag/index?order=count`;
 
-	const $ = await requestHTML(url);
+		if (req.query.q) url = `${site.url}/?tags=${encodeURIComponent(req.query.q)}&commit=Search`;
 
-	let tags = [];
+		const $ = await requestHTML(url);
 
-	if (req.query.q)
-		$("#tag-sidebar li a[itemprop=keywords]").each((i, el) => {
-			tags.push([
-				decodeURIComponent(
-					$(el)
-						.attr("href")
-						.replace("/?tags=", "")
-				),
+		let tags = [];
 
-				parseInt(
-					$(el)
-						.next()
-						.children()
-						.last()
-						.text()
-				),
+		if (req.query.q)
+			$("#tag-sidebar li a[itemprop=keywords]").each((i, el) => {
+				tags.push([
+					decodeURIComponent(
+						$(el)
+							.attr("href")
+							.replace("/?tags=", "")
+					),
 
-				(
-					site.tagTypes[
-						$(el.parent)
-							.attr("class")
-							.substr(9)
-					] || { id: -1 }
-				).id
-			]);
-		});
-	else
-		$(".highlightable tbody tr").each((i, el) => {
-			tags.push([
-				decodeURIComponent(
-					$(el)
-						.children()
-						.first()
-						.next()
-						.children()
-						.last()
-						.attr("href")
-						.replace("/?tags=", "")
-				),
+					parseInt(
+						$(el)
+							.next()
+							.children()
+							.last()
+							.text()
+					),
 
-				parseInt(
-					$(el)
-						.children()
-						.first()
-						.text()
-				),
-
-				(
-					site.tagTypes[
+					(
+						site.tagTypes[
+							$(el.parent)
+								.attr("class")
+								.substr(9)
+						] || { id: -1 }
+					).id
+				]);
+			});
+		else
+			$(".highlightable tbody tr").each((i, el) => {
+				tags.push([
+					decodeURIComponent(
 						$(el)
 							.children()
 							.first()
 							.next()
-							.attr("class")
-							.substr(9)
-					] || { id: -1 }
-				).id
-			]);
-		});
+							.children()
+							.last()
+							.attr("href")
+							.replace("/?tags=", "")
+					),
 
-	res.json({ tags: tags });
+					parseInt(
+						$(el)
+							.children()
+							.first()
+							.text()
+					),
+
+					(
+						site.tagTypes[
+							$(el)
+								.children()
+								.first()
+								.next()
+								.attr("class")
+								.substr(9)
+						] || { id: -1 }
+					).id
+				]);
+			});
+
+		res.json({ tags: tags });
+	}
 };

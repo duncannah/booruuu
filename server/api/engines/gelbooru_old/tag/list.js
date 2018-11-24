@@ -1,40 +1,44 @@
 const { requestHTML } = require("../../../request");
 
-module.exports = async (req, res, site) => {
-	let url = `${site.url}/index.php?page=post&s=list${
-		req.query.hasOwnProperty("q") ? "&tags=" + encodeURIComponent(req.query.q) : ""
-	}`;
+module.exports = {
+	preferredMethod: "html",
 
-	const $ = await requestHTML(url);
+	html: async (req, res, site) => {
+		let url = `${site.url}/index.php?page=post&s=list${
+			req.query.hasOwnProperty("q") ? "&tags=" + encodeURIComponent(req.query.q) : ""
+		}`;
 
-	let tags = [];
+		const $ = await requestHTML(url);
 
-	$("#tag-sidebar li[class^='tag-type-'] a:first-child").each((i, el) => {
-		tags.push([
-			decodeURIComponent(
-				$(el)
-					.next()
-					.next()
-					.attr("href")
-					.substr(32)
-			),
+		let tags = [];
 
-			parseInt(
-				$(el)
-					.siblings()
-					.last()
-					.text()
-			) || -1,
+		$("#tag-sidebar li[class^='tag-type-'] a:first-child").each((i, el) => {
+			tags.push([
+				decodeURIComponent(
+					$(el)
+						.next()
+						.next()
+						.attr("href")
+						.substr(32)
+				),
 
-			(
-				site.tagTypes[
-					$(el.parent)
-						.attr("class")
-						.substr(9)
-				] || { id: -1 }
-			).id
-		]);
-	});
+				parseInt(
+					$(el)
+						.siblings()
+						.last()
+						.text()
+				) || -1,
 
-	res.json({ tags: tags });
+				(
+					site.tagTypes[
+						$(el.parent)
+							.attr("class")
+							.substr(9)
+					] || { id: -1 }
+				).id
+			]);
+		});
+
+		res.json({ tags: tags });
+	}
 };
