@@ -27,10 +27,13 @@ router.get("/sites/:site/:controller/:action", async (req, res) => {
 			action.sites[req.params.site] = action.preferredMethod;
 		}, 1000 * 60 * 10);
 
+		if (action.hasOwnProperty("verif")) action.verif(req);
+
 		try {
 			await action[action.sites[req.params.site]](req, res, sites[req.params.site]);
 		} catch (error) {
 			if (!action.hasOwnProperty("json") || !action.hasOwnProperty("html")) throw error;
+
 			if (action.sites[req.params.site] !== action.preferredMethod)
 				action.sites[req.params.site] = action.preferredMethod;
 			else action.sites[req.params.site] = action.preferredMethod === "json" ? "html" : "json";
