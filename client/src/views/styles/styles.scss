@@ -1,6 +1,6 @@
+@import './fonts/index';
 @import 'shared';
 @import 'colors';
-@import '_browsers/webkit-no-mac';
 
 *, ::before, ::after {
 	box-sizing: border-box;
@@ -31,6 +31,10 @@ body {
 
 	color: var(--color-text);
 	background: var(--color-background);
+
+	&:not(.mac) {
+		font-family: 'SF Text', sans-serif;
+	}
 
 	.loader {
 		position: fixed;
