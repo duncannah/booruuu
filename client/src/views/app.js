@@ -37,7 +37,7 @@ class App extends Component {
 					firefox: typeof InstallTrigger !== "undefined",
 					edge: !!window.StyleMedia,
 
-					"color-1": true
+					[`color-${this.props.settings.color}`]: true
 				})}>
 				<div className="loader">
 					<Icon className="spinner" name="spinner" />
@@ -61,6 +61,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
 	return {
 		loading: state.app.loading,
+		settings: state.app.settings,
 		postViewOn: state.post.postView.on
 	};
 };

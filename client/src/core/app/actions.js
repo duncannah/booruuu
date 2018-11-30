@@ -4,6 +4,8 @@ export const appActions = {
 	NOTIFY: "NOTIFY",
 	DISMISS_NOTIF: "DISMISS_NOTIF",
 
+	SET_SETTINGS: "SET_SETTINGS",
+
 	LOADING: "LOADING",
 
 	INIT_FAILED: "INIT_FAILED",
@@ -23,6 +25,11 @@ export const appActions = {
 	dismissNotif: (i) => ({
 		type: appActions.DISMISS_NOTIF,
 		payload: i
+	}),
+
+	setSettings: (s) => ({
+		type: appActions.SET_SETTINGS,
+		payload: s
 	}),
 
 	loading: (action, start) => ({

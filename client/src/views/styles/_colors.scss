@@ -1,4 +1,4 @@
-$colors: #8a14ff #ff14e0 #ff1414 #ffad14 #fffb14 #20ff14 #14ffa9 #1467ff #2814ff #8a8a8a;
+$colors: #8a14ff #1467ff #2814ff #8a8a8a;
 
 @each $current-color in $colors {
 	$i: index($colors, $current-color);

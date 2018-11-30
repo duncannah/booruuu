@@ -2,7 +2,13 @@ import { appActions } from "./actions";
 
 const initialState = {
 	notifications: {},
-	settings: { color: 1 },
+	settings: {
+		color:
+			parseInt(localStorage.getItem("settings.color")) >= 1 &&
+			parseInt(localStorage.getItem("settings.color")) <= 4
+				? parseInt(localStorage.getItem("settings.color"))
+				: 1
+	},
 
 	loading: []
 };
@@ -24,6 +30,15 @@ export function appReducer(state = initialState, action) {
 			});
 
 			return toReturn;
+
+		case appActions.SET_SETTINGS:
+			return {
+				...state,
+				settings: {
+					...state.settings,
+					...action.payload
+				}
+			};
 
 		case appActions.LOADING:
 			toReturn = { ...state, loading: [] };
