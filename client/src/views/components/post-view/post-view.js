@@ -216,7 +216,7 @@ class PostView extends React.Component {
 				} else if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
 					if (e.key === "ArrowLeft" && this.props.postView.post !== 0)
 						this.props.startViewingPost(this.props.postView.post - 1);
-					else if (e.key === "ArrowRight" && this.props.postView.post < this.props.posts.length)
+					else if (e.key === "ArrowRight" && this.props.postView.post + 1 < this.props.posts.length)
 						this.props.startViewingPost(this.props.postView.post + 1);
 				}
 			}
