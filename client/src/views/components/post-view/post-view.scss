@@ -1,4 +1,4 @@
-@import '../../styles/shared';
+@import "../../styles/shared";
 
 .postView {
 	position: fixed;
@@ -21,6 +21,20 @@
 		pointer-events: initial;
 
 		opacity: 1;
+	}
+
+	.sidebar {
+		--color-background: rgba(0, 0, 0, 0.8);
+		--color-sidebar: rgba(0, 0, 0, 0.8);
+		--color-text: rgba(255, 255, 255, 0.8);
+		--color-text-rgba-1: rgba(255, 255, 255, 0.1);
+		--color-text-rgba-2: rgba(255, 255, 255, 0.2);
+		--color-text-rgba-4: rgba(255, 255, 255, 0.4);
+
+		position: relative;
+		z-index: 1;
+
+		color: rgba(255, 255, 255, 0.6);
 	}
 
 	.post {
@@ -47,7 +61,7 @@
 				left: 0;
 
 				border: solid 1px var(--color-main-rgba-6);
-				background: rgba(255, 255, 255, .4);
+				background: rgba(255, 255, 255, 0.4);
 
 				.noteBody {
 					line-height: 1;
@@ -66,13 +80,13 @@
 					background: inherit;
 				}
 
-				&[data-align='right'] .noteBody {
+				&[data-align="right"] .noteBody {
 					right: 0;
 				}
 
 				&:hover {
 					border: solid 1px var(--color-main-rgba-8);
-					background: rgba(255, 255, 255, .6);
+					background: rgba(255, 255, 255, 0.6);
 
 					.noteBody {
 						opacity: 1;
@@ -81,7 +95,9 @@
 			}
 		}
 
-		img, video, embed {
+		img,
+		video,
+		embed {
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -103,13 +119,13 @@
 			padding: 5px 10px;
 
 			cursor: pointer;
-			transition: opacity .25s;
+			transition: opacity 0.25s;
 			transition-delay: 1s;
 
 			opacity: 0;
 			color: #fff;
 			border-radius: 25px;
-			background: rgba(0, 0, 0, .75);
+			background: rgba(0, 0, 0, 0.75);
 		}
 
 		&:hover .info {
@@ -135,7 +151,7 @@
 				height: 100%;
 				margin: auto;
 
-				content: 'Can\'t load post.';
+				content: "Can't load post.";
 
 				background: #000;
 

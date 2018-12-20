@@ -33,6 +33,20 @@ function* fetchPopularTags() {
 	}
 }
 
+function* fetchWiki({ payload }) {
+	try {
+		let site = yield select((state) => state.site.currentSite);
+
+		const body = yield API.request(`sites/${site}/wiki/show?title=${encodeURIComponent(payload.tag)}`);
+
+		if (body.description !== "") yield put(siteActions.setWikiInfo(body.description));
+		else yield put(siteActions.setWikiInfo("[Wiki page doesn't exist.]"));
+	} catch (error) {
+		yield put(appActions.notify(`Couldn't fetch wiki description`, error));
+		yield put(siteActions.setWikiInfo(`[Failed to fetch wiki description.]`));
+	}
+}
+
 // WATCHERS
 
 function* watchInitApp() {
@@ -48,6 +62,10 @@ function* watchFetchPopularTags() {
 	yield takeLatest(siteActions.FETCH_POPULAR_TAGS, fetchPopularTags);
 }
 
+function* watchStartWiki() {
+	yield takeLatest(siteActions.START_VIEWING_WIKI, fetchWiki);
+}
+
 // ROOT
 
-export const siteSagas = [fork(watchInitApp), fork(watchSiteChange), fork(watchFetchPopularTags)];
+export const siteSagas = [fork(watchInitApp), fork(watchSiteChange), fork(watchFetchPopularTags), fork(watchStartWiki)];

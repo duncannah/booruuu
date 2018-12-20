@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import { siteActions } from "../../../core/site";
 
-import styles from "./site-selector.module.scss";
+import "./site-selector.scss";
 
 class SiteSelector extends React.Component {
 	_select = (e) => {
@@ -15,8 +15,8 @@ class SiteSelector extends React.Component {
 		const name = this.props.currentSite ? this.props.sites[this.props.currentSite].name : "\u00A0";
 
 		return (
-			<div className={styles.siteSelector}>
-				<select className={styles.select} onChange={this._select} value={this.props.currentSite}>
+			<div className="siteSelector">
+				<select className="select" onChange={this._select} value={this.props.currentSite}>
 					{(() => {
 						return Object.keys(this.props.sites).map((val) => {
 							return (
@@ -28,10 +28,10 @@ class SiteSelector extends React.Component {
 						});
 					})()}
 				</select>
-				<span className={classNames({ [styles.current]: true, [styles._long]: name.length >= 23 })}>
+				<span className={classNames({ "current": true, "_long": name.length >= 23 })}>
 					{name}
 				</span>
-				<span className={styles.arrow} />
+				<span className="arrow" />
 			</div>
 		);
 	}

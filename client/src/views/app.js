@@ -9,6 +9,7 @@ import Sidebar from "./components/sidebar";
 import Posts from "./components/posts";
 import PostView from "./components/post-view";
 import Settings from "./components/settings";
+import Wiki from "./components/wiki";
 import Notifications from "./components/notifications";
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
 				<PostView in={this.props.postViewOn} openSettingsPopup={() => this.setState({ settingsPopup: true })} />
 
 				<Settings in={this.state.settingsPopup} close={() => this.setState({ settingsPopup: false })} />
+				<Wiki />
 
 				<Notifications />
 			</div>

@@ -1,6 +1,7 @@
 {
 	"csscomb.ignoreFilesOnSave": [
-		"**/src/views/styles/_colors.scss"
+		"**/src/views/styles/_colors.scss",
+		"**/src/views/components/post-view/post-view.scss"
 	],
 	"git.ignoreLimitWarning": true
 }

@@ -7,7 +7,7 @@ import { postActions } from "../../../core/post";
 
 import Sidebar from "../sidebar";
 
-import styles from "./post-view.module.scss";
+import "./post-view.scss";
 
 const PLACEHOLDER = {
 	_: {
@@ -72,8 +72,8 @@ class Image extends React.Component {
 		const node = ReactDOM.findDOMNode(this);
 
 		if (node instanceof HTMLElement) {
-			const img = node.querySelector(`.${styles.viewport} img`);
-			node.querySelectorAll(`.${styles.note}`).forEach((el) => {
+			const img = node.querySelector(`.viewport img`);
+			node.querySelectorAll(`.note`).forEach((el) => {
 				el.style.width = `${(parseInt(el.getAttribute("data-w")) * img.offsetWidth) /
 					this.props.post.full[1]}px`;
 				el.style.height = `${(parseInt(el.getAttribute("data-h")) * img.offsetHeight) /
@@ -125,8 +125,8 @@ class Image extends React.Component {
 		return (
 			<div
 				className={classNames({
-					[styles.post]: true,
-					[styles.failed]: this.state.loadFailed
+					post: true,
+					failed: this.state.loadFailed
 				})}
 				onWheel={this._wheel}
 				onMouseDown={this._mouseDown}
@@ -134,21 +134,15 @@ class Image extends React.Component {
 				onMouseUp={this._mouseUp}
 				style={{ cursor: this.state.mouseDown ? "grabbing" : "grab" }}>
 				<div
-					className={styles.viewport}
+					className="viewport"
 					style={{
 						transform: `scale(${this.state.scale}) translate(${this.state.offsetX}px, ${
 							this.state.offsetY
 						}px)`
 					}}>
 					{(this.props.post.notes || []).map((n) => (
-						<div
-							className={styles.note}
-							key={`${n.x}.${n.y}`}
-							data-w={n.w}
-							data-h={n.h}
-							data-x={n.x}
-							data-y={n.y}>
-							<div className={styles.noteBody}>{n.b.replace(/<(.|\n)*?>/g, "")}</div>
+						<div className="note" key={`${n.x}.${n.y}`} data-w={n.w} data-h={n.h} data-x={n.x} data-y={n.y}>
+							<div className="noteBody">{n.b.replace(/<(.|\n)*?>/g, "")}</div>
 						</div>
 					))}
 					<img
@@ -171,7 +165,7 @@ class Image extends React.Component {
 						key={this.props.post.full[0]}
 					/>
 				</div>
-				<div className={styles.info} onClick={this._resetPan}>
+				<div className="info" onClick={this._resetPan}>
 					{Math.round(this.state.scale * 100)}%
 				</div>
 			</div>
@@ -189,7 +183,7 @@ class Interactive extends React.Component {
 
 	render() {
 		return (
-			<div className={classNames({ [styles.post]: true, [styles.failed]: this.state.loadFailed })}>
+			<div className={classNames({ post: true, failed: this.state.loadFailed })}>
 				{["mp4", "webm"].includes(this.props.post.kind) ? (
 					<video controls loop autoPlay poster={this.props.post.sample[0]} src={this.props.post.full[0]} />
 				) : this.props.on ? (
@@ -230,7 +224,7 @@ class PostView extends React.Component {
 				: PLACEHOLDER;
 
 		return (
-			<div className={classNames({ [styles.postView]: true, [styles.on]: this.props.postView.on })}>
+			<div className={classNames({ postView: true, on: this.props.postView.on })}>
 				<Sidebar
 					openSettingsPopup={this.props.openSettingsPopup}
 					postView

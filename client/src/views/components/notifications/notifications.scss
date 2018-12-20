@@ -40,7 +40,7 @@
 			}
 		}
 
-		&.enter {
+		&.-enter {
 			margin: -25px 0 0 0;
 
 			transform: translate(15px, 0px);
@@ -48,7 +48,7 @@
 			opacity: 0;
 		}
 
-		&.enterActive {
+		&.-enter-active {
 			margin: 10px 0 0 0;
 
 			transition: all 300ms ease-in;
@@ -57,7 +57,7 @@
 			opacity: 1;
 		}
 
-		&.exit {
+		&.-exit {
 			margin: 10px 0 0 0;
 
 			transform: translate(0px, 0px);
@@ -65,7 +65,7 @@
 			opacity: 1;
 		}
 
-		&.exitActive {
+		&.-exit-active {
 			margin: -25px 0 0 0;
 
 			transition: all 300ms ease-in;

@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import { appActions } from "../../../core/app";
 
-import styles from "./notifications.module.scss";
+import "./notifications.scss";
 
 class Notifications extends React.Component {
 	closeNotification = (i) => {
@@ -14,15 +14,15 @@ class Notifications extends React.Component {
 
 	render() {
 		return (
-			<TransitionGroup className={styles.notifications}>
+			<TransitionGroup className="notifications">
 				{Object.keys(this.props.notifications).map((i) => (
-					<CSSTransition timeout={300} classNames={styles} key={i}>
+					<CSSTransition timeout={300} classNames="" key={i}>
 						<div
 							className={classNames({
-								[styles.notification]: true,
-								[styles.error]: this.props.notifications[i].error
+								notification: true,
+								error: this.props.notifications[i].error
 							})}>
-							<div className={styles.close} onClick={() => this.closeNotification(i)}>
+							<div className="close" onClick={() => this.closeNotification(i)}>
 								x
 							</div>
 							<span>

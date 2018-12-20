@@ -13,6 +13,10 @@ module.exports = {
 			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
 			general: { color: "", id: 0 },
 			metadata: { color: "rgba(255, 252, 133, .6)", id: 5 }
+		},
+
+		supports: {
+			wiki: false
 		}
 	},
 
@@ -30,6 +34,10 @@ module.exports = {
 			copyright: { color: "rgba(238, 133, 255, .6)", id: 3 },
 			species: { color: "rgba(255, 160, 133, .6)", id: 5 },
 			general: { color: "", id: 0 }
+		},
+
+		supports: {
+			wiki: true
 		}
 	},
 
@@ -47,6 +55,10 @@ module.exports = {
 			copyright: { color: "rgba(238, 133, 255, .6)", id: 3 },
 			species: { color: "rgba(255, 160, 133, .6)", id: 5 },
 			general: { color: "", id: 0 }
+		},
+
+		supports: {
+			wiki: true
 		}
 	},
 
@@ -64,6 +76,10 @@ module.exports = {
 			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
 			general: { color: "", id: 0 },
 			meta: { color: "rgba(255, 252, 133, .6)", id: 5 }
+		},
+
+		supports: {
+			wiki: true
 		}
 	},
 
@@ -81,6 +97,10 @@ module.exports = {
 			character: { color: "rgba(143, 255, 133, .6)", id: 4 },
 			general: { color: "", id: 0 },
 			metadata: { color: "rgba(255, 252, 133, .6)", id: 5 }
+		},
+
+		supports: {
+			wiki: true
 		}
 	},
 
@@ -100,6 +120,10 @@ module.exports = {
 			medium: { color: "rgba(133, 210, 255, .6)", id: 8 },
 			general: { color: "", id: 0 },
 			meta: { color: "rgba(177, 133, 255, .6)", id: 9 }
+		},
+
+		supports: {
+			wiki: true
 		}
 	}
 };

@@ -96,26 +96,26 @@
 			}
 		}
 
-		&.enter {
+		&.-enter {
 			transform: translate(0, 15px);
 
 			opacity: 0;
 		}
 
-		&.enterActive {
+		&.-enter-active {
 			transition: all 300ms ease-in;
 			transform: translate(0, 0);
 
 			opacity: 1;
 		}
 
-		&.exit {
+		&.-exit {
 			transform: translate(0, 0);
 
 			opacity: 1;
 		}
 
-		&.exitActive {
+		&.-exit-active {
 			transition: all 300ms ease-out;
 			transform: translate(0, 15px);
 

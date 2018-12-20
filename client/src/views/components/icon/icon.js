@@ -1,11 +1,12 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 
-import styles from './icon.module.scss';
+import "./icon.scss";
 
-const Icon = ({ className, name }) =>
-	<svg className={classNames(styles.icon, className)}>
+const Icon = ({ className, name }) => (
+	<svg className={classNames("icon", className)}>
 		<use xlinkHref={`#icon-${name}`} />
-	</svg>;
+	</svg>
+);
 
 export default Icon;

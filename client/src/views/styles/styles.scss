@@ -36,6 +36,16 @@ body {
 		font-family: 'SF Text', sans-serif;
 	}
 
+	a {
+		text-decoration: none;
+
+		color: var(--color-text-rgba-10);
+	}
+
+	a:hover, a:focus {
+		text-decoration: underline;
+	}
+
 	.loader {
 		position: fixed;
 		z-index: 998;

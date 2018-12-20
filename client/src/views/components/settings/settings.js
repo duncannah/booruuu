@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 
-import styles from "./settings.module.scss";
+import "./settings.scss";
 
 import { appActions } from "../../../core/app";
 
@@ -30,21 +30,21 @@ class Settings extends React.Component {
 
 	render() {
 		return (
-			<CSSTransition timeout={400} classNames={styles} in={this.props.in} unmountOnExit>
-				<div className={styles.settings} onClick={this.props.close}>
+			<CSSTransition timeout={400} classNames="" in={this.props.in} unmountOnExit>
+				<div className="settings" onClick={this.props.close}>
 					<div
-						className={styles.inner}
+						className="inner"
 						onClick={(e) => {
 							e.stopPropagation();
 						}}>
-						<div className={styles.title}>settings</div>
-						<div className={styles.content}>
+						<div className="title">settings</div>
+						<div className="content">
 							<table>
 								<tbody>
 									<tr>
 										<td>colors:</td>
 										<td>
-											<div className={styles.settingColors}>
+											<div className="settingColors">
 												{["#8a14ff", "#1467ff", "#2814ff", "#8a8a8a"].map((c, i) => (
 													<input
 														type="radio"
@@ -61,8 +61,8 @@ class Settings extends React.Component {
 								</tbody>
 							</table>
 						</div>
-						<div className={styles.btns}>
-							<div className={styles.btnOK} onClick={this._onClick}>
+						<div className="btns">
+							<div className="btnOK" onClick={this._onClick}>
 								ok
 							</div>
 						</div>

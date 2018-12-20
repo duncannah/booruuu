@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import styles from "./tags.module.scss";
+import "./tags.scss";
 
 import { postActions } from "../../../core/post/actions";
+import { siteActions } from "../../../core/site";
 
 class PopularTags extends React.Component {
 	render() {
 		return (
-			<div className={styles.tags}>
+			<div className="tags">
 				{this.props.popularTags.map((tag) => (
 					<div
-						className={styles.tag}
+						className="tag"
 						style={{
 							color: (
 								Object.values(this.props.sites[this.props.currentSite].tagTypes).find(
@@ -21,22 +22,26 @@ class PopularTags extends React.Component {
 						}}
 						key={tag[0]}
 						data-tag={tag[0]}>
-						<div className={styles.actions}>
-							<div className={styles.info}>?</div>
-							<div className={styles.add} onClick={this.props.addTag}>
+						<div className="actions">
+							{this.props.sites[this.props.currentSite].supports.wiki ? (
+								<div className="info" onClick={() => this.props.startViewingWiki(tag[0])}>
+									?
+								</div>
+							) : (
+								""
+							)}
+							<div className="add" onClick={this.props.addTag}>
 								+
 							</div>
-							<div className={styles.substract} onClick={this.props.excludeTag}>
+							<div className="substract" onClick={this.props.excludeTag}>
 								-
 							</div>
 						</div>
 						<div
 							onClick={this.props.searchTag}
-							className={
-								tag[0].length > 23 ? (tag[0].length > 28 ? styles._verylong : styles._long) : ""
-							}>
+							className={tag[0].length > 23 ? (tag[0].length > 28 ? "_verylong" : "_long") : ""}>
 							{tag[0].replace(/_/g, " ")}
-							<div className={styles.count}>{tag[1] > 0 ? tag[1] : ""}</div>
+							<div className="count">{tag[1] > 0 ? tag[1] : ""}</div>
 						</div>
 					</div>
 				))}
@@ -53,7 +58,7 @@ class PostTags extends React.Component {
 				: { tags: [] };
 
 		return (
-			<div className={styles.tags}>
+			<div className="tags">
 				{this.props.currentSite
 					? Object.keys(this.props.sites[this.props.currentSite].tagTypes).map((name) => {
 							const type = this.props.sites[this.props.currentSite].tagTypes[name];
@@ -62,29 +67,37 @@ class PostTags extends React.Component {
 								if (tag[2] !== type.id) return [];
 								else
 									return (
-										<div className={styles.tag} key={tag[0]} data-tag={tag[0]}>
-											<div className={styles.actions}>
-												<div className={styles.info}>?</div>
+										<div className="tag" key={tag[0]} data-tag={tag[0]}>
+											<div className="actions">
+												{this.props.sites[this.props.currentSite].supports.wiki ? (
+													<div
+														className="info"
+														onClick={() => this.props.startViewingWiki(tag[0])}>
+														?
+													</div>
+												) : (
+													""
+												)}
 											</div>
 											<div
 												onClick={this.props.searchTag}
 												className={
 													tag[0].length > 23
 														? tag[0].length > 28
-															? styles._verylong
-															: styles._long
+															? "_verylong"
+															: "_long"
 														: ""
 												}>
 												{tag[0].replace(/_/g, " ")}
-												<div className={styles.count}>{tag[1] > 0 ? tag[1] : "..."}</div>
+												<div className="count">{tag[1] > 0 ? tag[1] : "..."}</div>
 											</div>
 										</div>
 									);
 							});
 
 							return tags.flat().length > 0 ? (
-								<div className={styles.type} style={{ color: type.color }} key={name}>
-									<div className={styles.name}>{name}</div>
+								<div className="type" style={{ color: type.color }} key={name}>
+									<div className="name">{name}</div>
 									<div>{tags}</div>
 								</div>
 							) : (
@@ -158,7 +171,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
 	setQueryBuffer: postActions.setQueryBuffer,
-	search: postActions.search
+	search: postActions.search,
+	startViewingWiki: siteActions.startViewingWiki
 };
 
 export default connect(

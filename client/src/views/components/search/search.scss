@@ -45,27 +45,4 @@
 			}
 		}
 	}
-
-	&.postView {
-		.icon {
-			fill: rgba(255, 255, 255, .2);
-		}
-
-		.input {
-			color: rgba(255, 255, 255, .4);
-			box-shadow: 0 2px rgba(255, 255, 255, .2);
-
-			&::placeholder {
-				color: rgba(255, 255, 255, .1);
-			}
-
-			&:focus {
-				color: rgba(255, 255, 255, .8);
-
-				& + svg {
-					fill: rgba(255, 255, 255, .4);
-				}
-			}
-		}
-	}
 }

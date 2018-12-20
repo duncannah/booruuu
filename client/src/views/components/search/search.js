@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import classNames from "classnames";
 
 import Icon from "../icon";
 
-import styles from "./search.module.scss";
+import "./search.scss";
 import { postActions } from "../../../core/post/actions";
 
 class Search extends React.Component {
@@ -22,20 +21,15 @@ class Search extends React.Component {
 
 	render() {
 		return (
-			<form
-				className={classNames({
-					[styles.search]: true,
-					[styles.postView]: this.props.postView
-				})}
-				onSubmit={this._submit}>
+			<form className="search" onSubmit={this._submit}>
 				<input
 					type="text"
-					className={styles.input}
+					className="input"
 					value={this.props.queryBuffer || ""}
 					placeholder="search..."
 					onChange={this._change}
 				/>
-				<Icon className={styles.icon} name="search" />
+				<Icon className="icon" name="search" />
 			</form>
 		);
 	}

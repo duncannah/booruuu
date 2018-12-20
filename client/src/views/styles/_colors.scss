@@ -122,5 +122,17 @@ $colors: #8a14ff #1467ff #2814ff #8a8a8a;
 		--color-sidebar-rgba-9: #{$color-sidebar-rgba-9};
 		--color-text-rgba-9: #{$color-text-rgba-9};
 		--color-btn-rgba-9: #{$color-btn-rgba-9};
+
+		$color-main-rgba-10: rgba($color-main, 1);
+		$color-background-rgba-10: rgba($color-background, 1);
+		$color-sidebar-rgba-10: rgba($color-sidebar, 1);
+		$color-text-rgba-10: rgba($color-text, 1);
+		$color-btn-rgba-10: rgba($color-btn, 1);
+
+		--color-main-rgba-10: #{$color-main-rgba-10};
+		--color-background-rgba-10: #{$color-background-rgba-10};
+		--color-sidebar-rgba-10: #{$color-sidebar-rgba-10};
+		--color-text-rgba-10: #{$color-text-rgba-10};
+		--color-btn-rgba-10: #{$color-btn-rgba-10};
 	}
 }
