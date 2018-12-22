@@ -8,8 +8,12 @@ import { appActions } from "../../../core/app";
 import "./notifications.scss";
 
 class Notifications extends React.Component {
-	closeNotification = (i) => {
-		this.props.dismissNotif(i);
+	_expandNotif = (e) => {
+		e.currentTarget.style.height = e.currentTarget.scrollHeight + "px";
+	};
+
+	_collapseNotif = (e) => {
+		e.currentTarget.style.height = "";
 	};
 
 	render() {
@@ -21,8 +25,10 @@ class Notifications extends React.Component {
 							className={classNames({
 								notification: true,
 								error: this.props.notifications[i].error
-							})}>
-							<div className="close" onClick={() => this.closeNotification(i)}>
+							})}
+							onMouseOver={this._expandNotif}
+							onMouseOut={this._collapseNotif}>
+							<div className="close" onClick={() => this.props.dismissNotif(i)}>
 								x
 							</div>
 							<span>
