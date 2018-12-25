@@ -1,4 +1,4 @@
-const { requestHTML } = require("../../../request");
+const { requestHTML, decodeHTML } = require("../../../request");
 
 module.exports = {
 	preferredMethod: "html",
@@ -14,12 +14,14 @@ module.exports = {
 
 		let tags = [];
 
-		$("#tag-list li[class^='tag-type-'] a:first-child").each((i, el) => {
+		$("#tag-list li[class^='tag-type-'] a:first-child").each((_, el) => {
 			tags.push([
-				decodeURIComponent(
-					$(el)
-						.attr("href")
-						.substr(34)
+				decodeHTML(
+					decodeURIComponent(
+						$(el)
+							.attr("href")
+							.substr(34)
+					)
 				),
 
 				parseInt(
