@@ -34,5 +34,7 @@ module.exports = {
 		const html = await booru.text();
 
 		return await cheerio.load(html);
-	}
+	},
+
+	decodeHTML: (str) => str.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)))
 };
