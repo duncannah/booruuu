@@ -78,6 +78,12 @@ class PostTags extends React.Component {
 												) : (
 													""
 												)}
+												<div className="add" onClick={this.props.addTag}>
+													+
+												</div>
+												<div className="substract" onClick={this.props.excludeTag}>
+													-
+												</div>
 											</div>
 											<div
 												onClick={this.props.searchTag}

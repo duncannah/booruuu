@@ -29,7 +29,7 @@ class Search extends React.Component {
 					placeholder="search..."
 					onChange={this._change}
 				/>
-				<Icon className="icon" name="search" />
+				<div className="icon">search</div>
 			</form>
 		);
 	}

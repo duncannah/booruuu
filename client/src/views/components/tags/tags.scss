@@ -1,7 +1,5 @@
 .tags {
 	.type {
-		//opacity: .6;
-
 		.name {
 			font-size: 27px;
 			font-weight: 300;
@@ -15,6 +13,8 @@
 		div {
 			display: inline-block;
 
+			cursor: pointer;
+
 			&._long {
 				letter-spacing: -1px;
 			}
@@ -26,8 +26,6 @@
 
 		.actions, .actions div {
 			margin-right: 4px;
-
-			cursor: pointer;
 		}
 
 		.count {

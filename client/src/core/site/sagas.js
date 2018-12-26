@@ -39,7 +39,7 @@ function* fetchWiki({ payload }) {
 
 		const body = yield API.request(`sites/${site}/wiki/show?title=${encodeURIComponent(payload.tag)}`);
 
-		if (body.description !== "") yield put(siteActions.setWikiInfo(body.description));
+		if (body.description) yield put(siteActions.setWikiInfo(body.description));
 		else yield put(siteActions.setWikiInfo("[Wiki page doesn't exist.]"));
 	} catch (error) {
 		yield put(appActions.notify(`Couldn't fetch wiki description`, error));

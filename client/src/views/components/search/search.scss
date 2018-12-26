@@ -10,9 +10,9 @@
 		top: 2px;
 		left: 2px;
 
-		transition: fill .25s;
+		transition: color .25s;
 
-		fill: var(--color-text-rgba-2);
+		color: var(--color-text-rgba-2);
 	}
 
 	.input {
@@ -40,8 +40,8 @@
 			color: var(--color-text);
 			box-shadow: 0 2px var(--color-text-rgba-4);
 
-			& + svg {
-				fill: var(--color-text-rgba-4);
+			& + .icon {
+				color: var(--color-text-rgba-4);
 			}
 		}
 	}

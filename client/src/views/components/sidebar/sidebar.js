@@ -4,7 +4,6 @@ import { APP_NAME, APP_VERSION } from "../../../core/constants";
 import SiteSelector from "../site-selector";
 import Search from "../search";
 import Tags from "../tags";
-import Icon from "../icon";
 
 import "./sidebar.scss";
 
@@ -23,7 +22,7 @@ class Sidebar extends React.Component {
 				</div>
 				<div className="bottom">
 					<div className="settingsBtn" onClick={this.props.openSettingsPopup}>
-						<Icon name="settings" />
+						<div className="icon">settings</div>
 					</div>
 					<a
 						className="link"

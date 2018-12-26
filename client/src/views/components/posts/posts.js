@@ -12,21 +12,21 @@ class Post extends React.Component {
 		const { index, thumb, score, fav, rating } = this.props;
 
 		return (
-			<div className={classNames({ "post": true, "flash": thumb[0] === "flash" })}>
+			<div className={classNames({ post: true, flash: thumb[0] === "flash" })}>
 				<div className="inner" onClick={() => this.props.onClick(index)}>
 					<img src={thumb[0] !== "flash" ? thumb[0] : ""} alt="" width={thumb[1]} height={thumb[2]} />
 					<div className="info">
 						<span
 							className={classNames({
-								"score": true,
-								"green": score > 0,
-								"red": score < 0
+								score: true,
+								green: score > 0,
+								red: score < 0
 							})}>
 							{Math.abs(score)}
 						</span>
 						{fav !== -1 ? (
 							<span className="favs">
-								<Icon name="favorite" className="icon" />
+								<div className="icon">favorite</div>
 								{fav}
 							</span>
 						) : (
@@ -34,10 +34,10 @@ class Post extends React.Component {
 						)}
 						<span
 							className={classNames({
-								"rating": true,
-								"green": rating === 0,
-								"yellow": rating === 1,
-								"red": rating === 2
+								rating: true,
+								green: rating === 0,
+								yellow: rating === 1,
+								red: rating === 2
 							})}>
 							{["S", "Q", "E"][rating]}
 						</span>
