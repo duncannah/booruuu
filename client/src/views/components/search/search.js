@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Icon from "../icon";
-
 import "./search.scss";
 import { postActions } from "../../../core/post/actions";
 

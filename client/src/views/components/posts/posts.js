@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import classNames from "classnames";
 
 import { postActions } from "../../../core/post";
-import Icon from "../icon";
 
 import "./posts.scss";
 
