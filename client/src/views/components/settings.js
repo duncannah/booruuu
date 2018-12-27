@@ -30,7 +30,7 @@ class Settings extends React.Component {
 
 	render() {
 		return (
-			<CSSTransition timeout={400} classNames="" in={this.props.in} unmountOnExit>
+			<CSSTransition timeout={200} classNames="" in={this.props.in} unmountOnExit>
 				<div className="settings" onClick={this.props.close}>
 					<div
 						className="inner"

@@ -89,12 +89,12 @@
 	}
 
 	&.-enter-active {
-		transition: all 400ms ease-in;
+		transition: all 200ms ease-in;
 
 		opacity: 1;
 
 		.inner {
-			transition: all 400ms ease-in;
+			transition: all 200ms ease-in;
 			transform: scale(1);
 		}
 	}
@@ -108,12 +108,12 @@
 	}
 
 	&.-exit-active {
-		transition: all 400ms ease-out;
+		transition: all 200ms ease-out;
 
 		opacity: 0;
 
 		.inner {
-			transition: all 400ms ease-out;
+			transition: all 200ms ease-out;
 			transform: scale(0);
 		}
 	}

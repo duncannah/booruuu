@@ -21,7 +21,7 @@ class Wiki extends React.Component {
 
 	render() {
 		return (
-			<CSSTransition timeout={400} classNames="" in={this.props.wiki.on} unmountOnExit>
+			<CSSTransition timeout={200} classNames="" in={this.props.wiki.on} unmountOnExit>
 				<div className="wiki" onClick={this.props.stopViewingWiki}>
 					<div
 						className="inner"
