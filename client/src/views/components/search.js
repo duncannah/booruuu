@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import "./search.scss";
-import { postActions } from "../../../core/post/actions";
+import { postActions } from "../../core/post/actions";
 
 class Search extends React.Component {
 	_submit = (e) => {

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
 
-import { siteActions } from "../../../core/site";
+import { siteActions } from "../../core/site";
 
 import "./site-selector.scss";
 
@@ -28,9 +28,7 @@ class SiteSelector extends React.Component {
 						});
 					})()}
 				</select>
-				<span className={classNames({ "current": true, "_long": name.length >= 23 })}>
-					{name}
-				</span>
+				<span className={classNames({ current: true, _long: name.length >= 23 })}>{name}</span>
 				<span className="arrow" />
 			</div>
 		);

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 
-import { appActions } from "../../../core/app";
+import { appActions } from "../../core/app";
 
 import "./notifications.scss";
 

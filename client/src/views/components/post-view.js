@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import classNames from "classnames";
 
-import { postActions } from "../../../core/post";
+import { postActions } from "../../core/post";
 
-import Sidebar from "../sidebar";
+import { Sidebar } from "./";
 
 import "./post-view.scss";
 

@@ -4,13 +4,7 @@ import classNames from "classnames";
 
 import { appActions } from "../core/app";
 
-import Icon from "./components/icon";
-import Sidebar from "./components/sidebar";
-import Posts from "./components/posts";
-import PostView from "./components/post-view";
-import Settings from "./components/settings";
-import Wiki from "./components/wiki";
-import Notifications from "./components/notifications";
+import { Icon, Sidebar, Posts, PostView, Settings, Wiki, Notifications } from "./components";
 
 class App extends Component {
 	constructor(props) {

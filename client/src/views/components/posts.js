@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
 
-import { postActions } from "../../../core/post";
+import { postActions } from "../../core/post";
 
 import "./posts.scss";
 

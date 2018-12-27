@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 
 import "./settings.scss";
 
-import { appActions } from "../../../core/app";
+import { appActions } from "../../core/app";
 
 class Settings extends React.Component {
 	componentDidMount() {

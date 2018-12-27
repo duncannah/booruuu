@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 
 import "./tags.scss";
 
-import { postActions } from "../../../core/post/actions";
-import { siteActions } from "../../../core/site";
+import { postActions } from "../../core/post/actions";
+import { siteActions } from "../../core/site";
 
 class PopularTags extends React.Component {
 	render() {

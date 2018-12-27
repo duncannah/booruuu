@@ -1,9 +1,8 @@
 import React from "react";
 
-import { APP_NAME, APP_VERSION } from "../../../core/constants";
-import SiteSelector from "../site-selector";
-import Search from "../search";
-import Tags from "../tags";
+import { APP_NAME, APP_VERSION } from "../../core/constants";
+
+import { SiteSelector, Search, Tags } from "./";
 
 import "./sidebar.scss";
 

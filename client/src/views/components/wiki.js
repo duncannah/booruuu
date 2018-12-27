@@ -5,10 +5,10 @@ import sanitizeHTML from "sanitize-html";
 
 import "./wiki.scss";
 
-import Icon from "../icon";
+import { Icon } from "./";
 
-import { siteActions } from "../../../core/site";
-import { postActions } from "../../../core/post/actions";
+import { siteActions } from "../../core/site";
+import { postActions } from "../../core/post/actions";
 
 class Wiki extends React.Component {
 	onContentClick = (e) => {
