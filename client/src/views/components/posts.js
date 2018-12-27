@@ -54,7 +54,7 @@ class Posts extends React.Component {
 
 	render() {
 		return (
-			<div className="posts">
+			<div className="posts" key={JSON.stringify(this.props.posts.map((p) => p.id))}>
 				{this.props.posts.map((post, i) => (
 					<Post {...post} key={this.props.currentSite + post.id} index={i} onClick={this._onClick} />
 				))}
