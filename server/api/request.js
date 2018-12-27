@@ -24,7 +24,7 @@ module.exports = {
 			return [];
 		}
 
-		if (json.hasOwnProperty("success") && !json.success) throw Error(`Booru said: "${booru.reason}"`);
+		if (json.hasOwnProperty("success") && !json.success) throw Error(`Booru returned: "${booru.reason}"`);
 
 		return json;
 	},

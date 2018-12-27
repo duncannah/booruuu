@@ -4,7 +4,7 @@ export const API = {
 		if (!response.ok) throw Error();
 
 		const body = await response.json();
-		if (body.error) throw Error(`Server said "${body.errorMessage}"`);
+		if (body.error) throw Error(`Server returned "${body.errorMessage}"`);
 
 		return body;
 	}
