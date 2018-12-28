@@ -74,19 +74,14 @@ class Image extends React.Component {
 		if (node instanceof HTMLElement) {
 			const img = node.querySelector(`.viewport img`);
 			node.querySelectorAll(`.note`).forEach((el) => {
-				el.style.width = `${(parseInt(el.dataset.w) * img.offsetWidth) /
-					this.props.post.full[1]}px`;
-				el.style.height = `${(parseInt(el.dataset.h) * img.offsetHeight) /
-					this.props.post.full[2]}px`;
+				el.style.width = `${(parseInt(el.dataset.w) * img.offsetWidth) / this.props.post.full[1]}px`;
+				el.style.height = `${(parseInt(el.dataset.h) * img.offsetHeight) / this.props.post.full[2]}px`;
 				el.style.top = `${img.offsetTop +
 					(parseInt(el.dataset.y) * img.offsetHeight) / this.props.post.full[2]}px`;
 				el.style.left = `${img.offsetLeft +
 					(parseInt(el.dataset.x) * img.offsetWidth) / this.props.post.full[1]}px`;
 
-				el.setAttribute(
-					"data-align",
-					parseInt(el.dataset.x) / this.props.post.full[1] <= 0.5 ? "left" : "right"
-				);
+				el.dataset.align = parseInt(el.dataset.x) / this.props.post.full[1] <= 0.5 ? "left" : "right";
 			});
 		}
 	};

@@ -12,10 +12,10 @@ import { postActions } from "../../core/post/actions";
 
 class Wiki extends React.Component {
 	onContentClick = (e) => {
-		if ("data-wikipage" in e.target.attributes) {
+		if ("wikipage" in e.target.dataset) {
 			e.preventDefault();
 
-			this.props.startViewingWiki(e.target.attributes["data-wikipage"].value.toLowerCase());
+			this.props.startViewingWiki(e.target.dataset.wikipage.toLowerCase());
 		}
 	};
 
