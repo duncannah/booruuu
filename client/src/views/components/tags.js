@@ -118,7 +118,7 @@ class PostTags extends React.Component {
 
 class Tags extends React.Component {
 	searchTag = (e) => {
-		let tag = e.currentTarget.parentNode.getAttribute("data-tag");
+		let tag = e.currentTarget.parentNode.dataset.tag;
 		if (this.props.query !== tag) {
 			this.props.setQueryBuffer(tag);
 			this.props.search();
@@ -126,7 +126,7 @@ class Tags extends React.Component {
 	};
 
 	addTag = (e) => {
-		let tag = e.currentTarget.parentNode.parentNode.getAttribute("data-tag");
+		let tag = e.currentTarget.parentNode.parentNode.dataset.tag;
 
 		if (this.props.queryBuffer.split(" ").includes("-" + tag)) {
 			this.props.setQueryBuffer(this.props.queryBuffer.replace(new RegExp("-" + tag, "g"), tag));
@@ -138,7 +138,7 @@ class Tags extends React.Component {
 	};
 
 	excludeTag = (e) => {
-		let tag = e.currentTarget.parentNode.parentNode.getAttribute("data-tag");
+		let tag = e.currentTarget.parentNode.parentNode.dataset.tag;
 
 		if (this.props.queryBuffer.split(" ").includes(tag)) {
 			if (tag.includes(":")) this.props.setQueryBuffer(this.props.queryBuffer.replace(new RegExp(tag, "g"), ""));
