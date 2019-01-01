@@ -21,7 +21,7 @@ module.exports = {
 				s_h = 850 / (post.image_width / post.image_height);
 			} else if (post.image_width < post.image_height) {
 				p_w = 150 * (post.image_width / post.image_height);
-				s_w = 850 / (post.image_width / post.image_height);
+				s_w = 850 * (post.image_width / post.image_height);
 			}
 
 			// API doesn't specify if post is gold only -- https://danbooru.donmai.us/forum_topics/4788

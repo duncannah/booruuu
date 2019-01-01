@@ -16,9 +16,15 @@ module.exports = {
 
 		for (const post of json) {
 			let p_w = (p_h = 150);
+			let s_w = (s_h = 850);
 
-			if (post.width > post.height) p_h = 150 / (post.width / post.height);
-			else if (post.width < post.height) p_w = 150 * (post.width / post.height);
+			if (post.width > post.height) {
+				p_h = 150 / (post.width / post.height);
+				s_h = 850 / (post.width / post.height);
+			} else if (post.width < post.height) {
+				p_w = 150 * (post.width / post.height);
+				s_w = 150 * (post.width / post.height);
+			}
 
 			posts.push({
 				_: {
@@ -47,8 +53,8 @@ module.exports = {
 						? `${site.url}/samples/${post.directory}/sample_${post.hash}.jpg`
 						: `${site.url}/thumbnails/${post.directory}/thumbnail_${post.hash}.jpg`,
 
-					post.sample_width,
-					post.sample_height
+					post.sample ? post.sample_width : s_w,
+					post.sample ? post.sample_height : s_h
 				],
 
 				full: [post.file_url, post.width, post.height]
