@@ -63,7 +63,9 @@ function* fetchPostInfo(payload) {
 
 		const info = yield select((state) => state.post.posts.find((p) => p.id === payload));
 
-		yield put(postActions.setPostInfo({ ...body.info, _: { ...info._, needsInfo: false, needsTags: false } }));
+		yield put(
+			postActions.setPostInfo({ id: payload, ...body.info, _: { ...info._, needsInfo: false, needsTags: false } })
+		);
 	} catch (e) {
 		yield put(appActions.notify(`Couldn't fetch info`, e));
 	}

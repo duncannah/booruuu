@@ -29,7 +29,7 @@ module.exports = {
 			posts.push({
 				_: {
 					needsTags: true,
-					needsInfo: false,
+					needsInfo: true,
 
 					needsNotes: false
 				},
@@ -38,7 +38,7 @@ module.exports = {
 				description: "",
 				score: post.score,
 				fav: -1,
-				time: new Date(post.created_at).getTime(),
+				time: post.change * 1000,
 				author: post.owner,
 				sources: [],
 				fileSize: 0,

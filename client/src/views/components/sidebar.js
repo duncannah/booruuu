@@ -2,7 +2,7 @@ import React from "react";
 
 import { APP_NAME, APP_VERSION } from "../../core/constants";
 
-import { SiteSelector, Search, Tags } from "./";
+import { PostInfo, SiteSelector, Search, Tags } from "./";
 
 import "./sidebar.scss";
 
@@ -18,6 +18,7 @@ class Sidebar extends React.Component {
 				<Search postView={this.props.postView} />
 				<div className="inner">
 					<Tags postView={this.props.postView} />
+					{this.props.postView ? <PostInfo /> : ""}
 				</div>
 				<div className="bottom">
 					<div className="settingsBtn" onClick={this.props.openSettingsPopup}>

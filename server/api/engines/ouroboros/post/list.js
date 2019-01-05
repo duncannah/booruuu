@@ -37,7 +37,7 @@ module.exports = {
 				description: post.description,
 				score: post.score,
 				fav: post.fav_count,
-				time: post.created_at.s,
+				time: post.created_at.s * 1000,
 				author: post.author,
 				sources: post.sources || [],
 				fileSize: post.file_size,
