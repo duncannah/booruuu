@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"client": "cd client && npm run start",
-		"start": "nodemon ./server",
+		"start": "nodemon --watch server --watch node_modules ./server",
 		"dev": "concurrently --kill-others-on-fail \"npm run start\" \"npm run client\""
 	},
 	"dependencies": {
