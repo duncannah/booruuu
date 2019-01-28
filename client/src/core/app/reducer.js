@@ -7,7 +7,12 @@ const initialState = {
 			parseInt(localStorage.getItem("settings.color")) >= 1 &&
 			parseInt(localStorage.getItem("settings.color")) <= 4
 				? parseInt(localStorage.getItem("settings.color"))
-				: 1
+				: 1,
+		defaultVolume:
+			parseFloat(localStorage.getItem("settings.defaultVolume")) <= 1 &&
+			parseFloat(localStorage.getItem("settings.defaultVolume")) >= 0
+				? parseFloat(localStorage.getItem("settings.defaultVolume"))
+				: 0.2
 	},
 
 	loading: []

@@ -180,7 +180,17 @@ class Interactive extends React.Component {
 		return (
 			<div className={classNames({ post: true, failed: this.state.loadFailed })}>
 				{["mp4", "webm"].includes(this.props.post.kind) ? (
-					<video controls loop autoPlay poster={this.props.post.sample[0]} src={this.props.post.full[0]} />
+					<video
+						controls
+						loop
+						autoPlay
+						poster={this.props.post.sample[0]}
+						src={this.props.post.full[0]}
+						onLoadStart={(e) => {
+							e.target.volume = this.props.volume;
+						}}
+						onVolumeChange={(e) => this.props.setVolume(e.target.volume)}
+					/>
 				) : this.props.on ? (
 					<embed
 						src={this.props.post.full[0]}
@@ -196,6 +206,18 @@ class Interactive extends React.Component {
 }
 
 class PostView extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			volume: this.props.defaultVolume
+		};
+	}
+
+	_setVolume = (volume) => {
+		this.setState({ volume });
+	};
+
 	componentDidMount() {
 		document.addEventListener("keyup", (e) => {
 			if (this.props.in) {
@@ -227,7 +249,13 @@ class PostView extends React.Component {
 				/>
 
 				{["mp4", "webm", "swf"].includes(post.kind) ? (
-					<Interactive post={post} key={"img_" + this.props.postView.post} on={this.props.postView.on} />
+					<Interactive
+						post={post}
+						key={"img_" + this.props.postView.post}
+						on={this.props.postView.on}
+						volume={this.state.volume}
+						setVolume={this._setVolume}
+					/>
 				) : (
 					<Image post={post} key={"img_" + this.props.postView.post} />
 				)}
@@ -241,7 +269,8 @@ class PostView extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		posts: state.post.posts,
-		postView: state.post.postView
+		postView: state.post.postView,
+		defaultVolume: state.app.settings.defaultVolume
 	};
 };
 

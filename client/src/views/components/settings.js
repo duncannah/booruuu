@@ -19,7 +19,8 @@ class Settings extends React.Component {
 
 		if (node instanceof HTMLElement) {
 			let settings = {
-				color: parseInt(node.querySelector(":checked").value)
+				color: parseInt(node.querySelector(".settingColors :checked").value),
+				defaultVolume: parseFloat(node.querySelector(".settingDefaultVolume").value)
 			};
 
 			this.props.setSettings(settings);
@@ -56,6 +57,19 @@ class Settings extends React.Component {
 													/>
 												))}
 											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>default volume:</td>
+										<td>
+											<input
+												type="range"
+												className="settingDefaultVolume"
+												min="0"
+												max="1"
+												step="0.01"
+												defaultValue={this.props.settings.defaultVolume}
+											/>
 										</td>
 									</tr>
 								</tbody>
