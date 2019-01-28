@@ -26,7 +26,11 @@ export function postReducer(state = initialState, action) {
 		case postActions.RESET_POSTS:
 			return {
 				...state,
-				posts: []
+				posts: [],
+				postView: {
+					...state.postView,
+					post: -1
+				}
 			};
 
 		case postActions.SEARCH:
