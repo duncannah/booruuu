@@ -8,4 +8,5 @@ export { default as Settings } from "./settings.js";
 export { default as Sidebar } from "./sidebar.js";
 export { default as SiteSelector } from "./site-selector.js";
 export { default as Tags } from "./tags.js";
+export { default as Welcome } from "./welcome.js";
 export { default as Wiki } from "./wiki.js";

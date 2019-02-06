@@ -4,6 +4,8 @@ import classNames from "classnames";
 
 import { postActions } from "../../core/post";
 
+import { Welcome } from "./";
+
 import "./posts.scss";
 
 class Post extends React.Component {
@@ -55,9 +57,13 @@ class Posts extends React.Component {
 	render() {
 		return (
 			<div className="posts" key={JSON.stringify(this.props.posts.map((p) => p.id))}>
-				{this.props.posts.map((post, i) => (
-					<Post {...post} key={this.props.currentSite + post.id} index={i} onClick={this._onClick} />
-				))}
+				{this.props.posts.length ? (
+					this.props.posts.map((post, i) => (
+						<Post {...post} key={this.props.currentSite + post.id} index={i} onClick={this._onClick} />
+					))
+				) : (
+					<Welcome />
+				)}
 			</div>
 		);
 	}

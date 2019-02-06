@@ -1,0 +1,46 @@
+.welcome {
+	font-size: 22px;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	display: inline-table;
+
+	width: 100%;
+	margin: auto;
+
+	text-align: center;
+	.name {
+		font-size: 64px;
+		font-weight: 200;
+		line-height: 1;
+	}
+
+	.top, .bottom {
+		font-size: 24px;
+		font-weight: 300;
+	}
+
+	.bottom {
+		margin: -10px 0 0 0;
+		padding: 0 0 0 14em;
+	}
+
+	.top {
+		margin: 0 0 -13px 0;
+		padding: 0 14em 0 0;
+	}
+
+	.desc {
+		font-size: 27px;
+	}
+
+	.link {
+		font-size: 16px;
+
+		margin: 6em 0 0 0;
+	}
+}

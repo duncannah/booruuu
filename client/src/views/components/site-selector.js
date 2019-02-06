@@ -12,11 +12,12 @@ class SiteSelector extends React.Component {
 	};
 
 	render() {
-		const name = this.props.currentSite ? this.props.sites[this.props.currentSite].name : "\u00A0";
+		const name = this.props.currentSite ? this.props.sites[this.props.currentSite].name : "(pick a site...)";
 
 		return (
 			<div className="siteSelector">
 				<select className="select" onChange={this._select} value={this.props.currentSite}>
+					{!this.props.currentSite ? <option value="">{name}</option> : null}
 					{(() => {
 						return Object.keys(this.props.sites).map((val) => {
 							return (
