@@ -12,7 +12,10 @@ const initialState = {
 			parseFloat(localStorage.getItem("settings.defaultVolume")) <= 1 &&
 			parseFloat(localStorage.getItem("settings.defaultVolume")) >= 0
 				? parseFloat(localStorage.getItem("settings.defaultVolume"))
-				: 0.2
+				: 0.2,
+		welcomeScreen: !isNaN(parseInt(localStorage.getItem("settings.welcomeScreen")))
+			? parseInt(localStorage.getItem("settings.welcomeScreen"))
+			: 1
 	},
 
 	loading: []

@@ -21,9 +21,15 @@ class Sidebar extends React.Component {
 					{this.props.postView ? <PostInfo /> : ""}
 				</div>
 				<div className="bottom">
-					<div className="settingsBtn" onClick={this.props.openSettingsPopup}>
-						<div className="icon">settings</div>
+					<div className="btns">
+						<div className="icon" onClick={this.props.openSettingsPopup}>
+							settings
+						</div>
+						<div className="icon" onClick={this.props.openWelcomeScreen}>
+							help
+						</div>
 					</div>
+
 					<a
 						className="link"
 						href="https://github.com/duncannah/booruuu"

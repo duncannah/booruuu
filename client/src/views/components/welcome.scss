@@ -1,3 +1,4 @@
+/*
 .welcome {
 	font-size: 22px;
 
@@ -13,34 +14,132 @@
 	margin: auto;
 
 	text-align: center;
-	.name {
-		font-size: 64px;
-		font-weight: 200;
-		line-height: 1;
+}*/
+
+.welcome {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	display: flex;
+
+	width: 100%;
+	height: 100%;
+
+	background: var(--color-background-rgba-9);
+
+	justify-content: center;
+	align-items: center;
+
+	.inner {
+		font-size: 22px;
+
+		display: flex;
+		flex-direction: column;
+
+		width: 75%;
+		min-width: 800px;
+		height: 70%;
+		min-height: 300px;
+		padding: 25px;
+
+		text-align: center;
+
+		border-radius: 25px;
+		background: var(--color-sidebar);
+		box-shadow: 0 0 4px 0 var(--color-sidebar);
+
+		.content {
+			position: relative;
+
+			overflow-y: auto;
+
+			margin: auto 25px;
+
+			.name {
+				font-size: 64px;
+				font-weight: 200;
+				line-height: 1;
+			}
+
+			.top, .bottom {
+				font-size: 24px;
+				font-weight: 300;
+			}
+
+			.bottom {
+				margin: -10px 0 0 0;
+				padding: 0 0 0 14em;
+			}
+
+			.top {
+				margin: 0 0 -13px 0;
+				padding: 0 14em 0 0;
+			}
+
+			.desc {
+				font-size: 27px;
+			}
+
+			.link {
+				font-size: 16px;
+
+				margin: 6em 0 0 0;
+			}
+		}
+
+		.btns {
+			.btn {
+				float: right;
+
+				padding: 5px 20px;
+
+				cursor: pointer;
+				text-align: center;
+
+				color: rgba(255, 255, 255, .6);
+				border-radius: 25px;
+				background: var(--color-btn);
+				box-shadow: 0 0 4px 0 var(--color-sidebar);
+			}
+		}
 	}
 
-	.top, .bottom {
-		font-size: 24px;
-		font-weight: 300;
+	&.-enter {
+		opacity: 0;
+
+		.inner {
+			transform: scale(0);
+		}
 	}
 
-	.bottom {
-		margin: -10px 0 0 0;
-		padding: 0 0 0 14em;
+	&.-enter-active {
+		transition: all 200ms ease-in;
+
+		opacity: 1;
+
+		.inner {
+			transition: all 200ms ease-in;
+			transform: scale(1);
+		}
 	}
 
-	.top {
-		margin: 0 0 -13px 0;
-		padding: 0 14em 0 0;
+	&.-exit {
+		opacity: 1;
+
+		.inner {
+			transform: scale(1);
+		}
 	}
 
-	.desc {
-		font-size: 27px;
-	}
+	&.-exit-active {
+		transition: all 200ms ease-out;
 
-	.link {
-		font-size: 16px;
+		opacity: 0;
 
-		margin: 6em 0 0 0;
+		.inner {
+			transition: all 200ms ease-out;
+			transform: scale(0);
+		}
 	}
 }

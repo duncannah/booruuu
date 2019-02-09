@@ -244,6 +244,7 @@ class PostView extends React.Component {
 			<div className={classNames({ postView: true, on: this.props.postView.on })}>
 				<Sidebar
 					openSettingsPopup={this.props.openSettingsPopup}
+					openWelcomeScreen={this.props.openWelcomeScreen}
 					postView
 					key={"side_" + this.props.postView.post}
 				/>

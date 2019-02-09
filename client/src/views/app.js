@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import { appActions } from "../core/app";
 
-import { Icon, Sidebar, Posts, PostView, Settings, Wiki, Notifications } from "./components";
+import { Icon, Sidebar, Posts, PostView, Settings, Wiki, Notifications, Welcome } from "./components";
 
 class App extends Component {
 	constructor(props) {
@@ -38,13 +38,25 @@ class App extends Component {
 					<Icon className="spinner" name="spinner" />
 				</div>
 
-				<Sidebar openSettingsPopup={() => this.setState({ settingsPopup: true })} />
+				<Sidebar
+					openSettingsPopup={() => this.setState({ settingsPopup: true })}
+					openWelcomeScreen={() => this.props.setSettings({ welcomeScreen: 1 })}
+				/>
 				<Posts />
 
-				<PostView in={this.props.postViewOn} openSettingsPopup={() => this.setState({ settingsPopup: true })} />
+				<PostView
+					in={this.props.postViewOn}
+					openSettingsPopup={() => this.setState({ settingsPopup: true })}
+					openWelcomeScreen={() => this.props.setSettings({ welcomeScreen: 1 })}
+				/>
 
 				<Settings in={this.state.settingsPopup} close={() => this.setState({ settingsPopup: false })} />
 				<Wiki />
+
+				<Welcome
+					in={!!this.props.settings.welcomeScreen}
+					close={() => this.props.setSettings({ welcomeScreen: 0 })}
+				/>
 
 				<Notifications />
 			</div>
@@ -63,7 +75,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-	initApp: appActions.initApp
+	initApp: appActions.initApp,
+	setSettings: appActions.setSettings
 };
 
 export default connect(

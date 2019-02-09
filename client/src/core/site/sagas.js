@@ -12,7 +12,7 @@ function* fetchSites() {
 		const body = yield API.request("sites");
 
 		yield put(siteActions.addSite(body.sites, body.engines));
-		//yield put(siteActions.changeSite(Object.keys(body.sites)[0]));
+		yield put(siteActions.changeSite(Object.keys(body.sites)[0]));
 	} catch (error) {
 		yield put(appActions.initFailed());
 	}

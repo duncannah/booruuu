@@ -37,10 +37,12 @@
 	}
 
 	.bottom {
-		.settingsBtn {
+		.btns {
 			float: left;
 
-			cursor: pointer;
+			.icon {
+				cursor: pointer;
+			}
 		}
 
 		.link {

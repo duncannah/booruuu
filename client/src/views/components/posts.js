@@ -4,8 +4,6 @@ import classNames from "classnames";
 
 import { postActions } from "../../core/post";
 
-import { Welcome } from "./";
-
 import "./posts.scss";
 
 class Post extends React.Component {
@@ -62,7 +60,7 @@ class Posts extends React.Component {
 						<Post {...post} key={this.props.currentSite + post.id} index={i} onClick={this._onClick} />
 					))
 				) : (
-					<Welcome />
+					<div className="noPosts">( no posts found... )</div>
 				)}
 			</div>
 		);
