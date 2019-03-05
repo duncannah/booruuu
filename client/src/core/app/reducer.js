@@ -4,17 +4,17 @@ const initialState = {
 	notifications: {},
 	settings: {
 		color:
-			parseInt(localStorage.getItem("settings.color")) >= 1 &&
-			parseInt(localStorage.getItem("settings.color")) <= 4
-				? parseInt(localStorage.getItem("settings.color"))
+			parseInt(localStorage.getItem("settings.color"), 10) >= 1 &&
+			parseInt(localStorage.getItem("settings.color"), 10) <= 4
+				? parseInt(localStorage.getItem("settings.color"), 10)
 				: 1,
 		defaultVolume:
 			parseFloat(localStorage.getItem("settings.defaultVolume")) <= 1 &&
 			parseFloat(localStorage.getItem("settings.defaultVolume")) >= 0
 				? parseFloat(localStorage.getItem("settings.defaultVolume"))
 				: 0.2,
-		welcomeScreen: !isNaN(parseInt(localStorage.getItem("settings.welcomeScreen")))
-			? parseInt(localStorage.getItem("settings.welcomeScreen"))
+		welcomeScreen: !isNaN(parseInt(localStorage.getItem("settings.welcomeScreen"), 10))
+			? parseInt(localStorage.getItem("settings.welcomeScreen"), 10)
 			: 1
 	},
 

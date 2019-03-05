@@ -4,11 +4,11 @@ module.exports = {
 	preferredMethod: "html",
 
 	verif: (req) => {
-		if (isNaN(parseInt(req.query.id)) || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
+		if (isNaN(parseInt(req.query.id, 10)) || parseInt(req.query.id, 10) <= 0) throw Error(`ID not valid`);
 	},
 
 	html: async (req, res, site) => {
-		let url = `${site.url}/index.php?page=post&s=view&id=${parseInt(req.query.id)}`;
+		let url = `${site.url}/index.php?page=post&s=view&id=${parseInt(req.query.id, 10)}`;
 
 		const $ = await requestHTML(url);
 
@@ -25,7 +25,8 @@ module.exports = {
 				parseInt(
 					$(el)
 						.next()
-						.text()
+						.text(),
+					10
 				) || -1,
 
 				(

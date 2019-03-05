@@ -26,7 +26,8 @@ module.exports = {
 						.next()
 						.next()
 						.next()
-						.text()
+						.text(),
+					10
 				) || -1,
 
 				(

@@ -4,11 +4,11 @@ module.exports = {
 	preferredMethod: "json",
 
 	verif: (req) => {
-		if (isNaN(parseInt(req.query.id)) || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
+		if (isNaN(parseInt(req.query.id, 10)) || parseInt(req.query.id, 10) <= 0) throw Error(`ID not valid`);
 	},
 
 	json: async (req, res, site) => {
-		let url = `${site.url}/note/index.json?post_id=${parseInt(req.query.id)}`;
+		let url = `${site.url}/note/index.json?post_id=${parseInt(req.query.id, 10)}`;
 
 		const json = await requestJSON(url);
 

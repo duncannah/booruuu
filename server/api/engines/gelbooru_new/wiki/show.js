@@ -22,7 +22,8 @@ module.exports = {
 				id = parseInt(
 					$getID(e)
 						.attr("href")
-						.substr(30)
+						.substr(30),
+					10
 				);
 				return false;
 			}

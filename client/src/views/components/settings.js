@@ -19,7 +19,7 @@ class Settings extends React.Component {
 
 		if (node instanceof HTMLElement) {
 			let settings = {
-				color: parseInt(node.querySelector(".settingColors :checked").value),
+				color: parseInt(node.querySelector(".settingColors :checked").value, 10),
 				defaultVolume: parseFloat(node.querySelector(".settingDefaultVolume").value)
 			};
 

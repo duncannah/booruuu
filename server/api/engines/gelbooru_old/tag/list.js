@@ -26,7 +26,8 @@ module.exports = {
 					$(el)
 						.siblings()
 						.last()
-						.text()
+						.text(),
+					10
 				) || -1,
 
 				(

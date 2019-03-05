@@ -4,11 +4,11 @@ module.exports = {
 	preferredMethod: "json",
 
 	verif: (req) => {
-		if (isNaN(parseInt(req.query.id)) || parseInt(req.query.id) <= 0) throw Error(`ID not valid`);
+		if (isNaN(parseInt(req.query.id, 10)) || parseInt(req.query.id, 10) <= 0) throw Error(`ID not valid`);
 	},
 
 	json: async (req, res, site) => {
-		let url = `https://capi-v2.sankakucomplex.com/posts/${parseInt(req.query.id)}/notes`;
+		let url = `https://capi-v2.sankakucomplex.com/posts/${parseInt(req.query.id, 10)}/notes`;
 
 		const json = await requestJSON(url);
 

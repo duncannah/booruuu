@@ -26,7 +26,8 @@ module.exports = {
 							.next()
 							.children()
 							.last()
-							.text()
+							.text(),
+						10
 					),
 
 					(
@@ -56,7 +57,8 @@ module.exports = {
 						$(el)
 							.children()
 							.first()
-							.text()
+							.text(),
+						10
 					),
 
 					(

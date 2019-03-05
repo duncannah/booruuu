@@ -27,17 +27,20 @@ module.exports = {
 							$(el)
 								.next()
 								.text()
-								.replace("k", "") * 1000
+								.replace("k", "") * 1000,
+							10
 					  )
 					: parseInt(
 							$(el)
 								.next()
-								.text()
+								.text(),
+							10
 					  ) || -1,
 				parseInt(
 					$(el.parent)
 						.attr("class")
-						.substr(-1)
+						.substr(-1),
+					10
 				)
 			]);
 		});
