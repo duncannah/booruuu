@@ -21,14 +21,14 @@ Here's an online demo that might or might not work: https://booruuu.ermansay.in/
 
 # How to run
 
-Make sure you ran `npm install` on both the main component and the `client` component to get the dependencies.
-You also need nodemon: `sudo npm install -g nodemon`.
+Make sure you ran `yarn install` on both the main component and the `client` component to get the dependencies.
+You also need nodemon: `sudo yarn global add nodemon`.
 
-For general development (runs both API server and client server): `npm run dev`.
+For general development (runs both API server and client server): `yarn run dev`.
 
-Run API server only: `PORT=5000 npm run start`.
+Run API server only: `PORT=5000 yarn run start`.
 
-To compile client (to be served by a web server): `cd client; PUBLIC_URL=./ npm run build`.
+To compile client (to be served by a web server): `cd client; PUBLIC_URL=./ yarn run build`.
 
 Setting `PUBLIC_URL` as `./` should be fine, since we're not using any routers.
 
