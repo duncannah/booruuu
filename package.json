@@ -2,9 +2,9 @@
 	"name": "booruuu",
 	"version": "0.0.1",
 	"scripts": {
-		"client": "cd client && npm run start",
+		"client": "cd client && yarn-or-npm run start",
 		"start": "nodemon --watch server --watch node_modules ./server",
-		"dev": "concurrently --kill-others-on-fail \"npm run start\" \"npm run client\""
+		"dev": "concurrently --kill-others-on-fail \"yarn-or-npm run start\" \"yarn-or-npm run client\""
 	},
 	"dependencies": {
 		"cheerio": "^1.0.0-rc.3",
@@ -15,7 +15,9 @@
 		"npm-run-all": "^4.1.5"
 	},
 	"devDependencies": {
-		"concurrently": "^3.5.0"
+		"concurrently": "^3.5.0",
+		"nodemon": "^1.19.2",
+		"yarn-or-npm": "^3.0.1"
 	},
 	"repository": "duncannah/booruuu",
 	"license": "AGPL-3.0"

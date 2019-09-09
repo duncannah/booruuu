@@ -22,7 +22,6 @@ Here's an online demo that might or might not work: https://booruuu.ermansay.in/
 # How to run
 
 Make sure you ran `yarn install` on both the main component and the `client` component to get the dependencies.
-You also need nodemon: `sudo yarn global add nodemon`.
 
 For general development (runs both API server and client server): `yarn run dev`.
 
