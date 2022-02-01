@@ -6,18 +6,9 @@ This is still in alpha stage, so bugs are pretty common; most things will just n
 
 ![Screenshot](doc/screenshot.png)
 
-# Online demo
+# No longer maintained
 
-Here's an online demo that might or might not work: https://booruuu.ermansay.in/
-
-# Currently supported websites
-
--   Safebooru
--   e926
--   e621 🔞
--   Danbooru 🔞
--   Gelbooru 🔞
--   Sankaku Channel 🔞
+This project is no longer maintained.
 
 # How to run
 
